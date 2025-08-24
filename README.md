@@ -5,7 +5,8 @@ A lightweight, framework-agnostic JavaScript library for seamless theme switchin
 [![npm version](https://badgen.net/npm/v/website-theme-switcher)](https://www.npmjs.com/package/website-theme-switcher)
 [![bundle size](https://badgen.net/bundlephobia/minzip/website-theme-switcher)](https://bundlephobia.com/result?p=website-theme-switcher)
 [![downloads](https://badgen.net/npm/dt/website-theme-switcher)](https://www.npmjs.com/package/website-theme-switcher)
-[![license](https://badgen.net/npm/license/website-theme-switcher)](https://github.com/your-username/website-theme-switcher)
+[![license](https://badgen.net/npm/license/website-theme-switcher)](https://github.com/mnahsanofficial/website-theme-switcher)
+[![GitHub stars](https://badgen.net/github/stars/mnahsanofficial/website-theme-switcher)](https://github.com/mnahsanofficial/website-theme-switcher)
 
 ## ✨ Features
 
@@ -295,6 +296,23 @@ WebsiteThemeSwitcher.loadTheme('custom-theme', {
 });
 ```
 
+## 📊 Version Comparison Table
+
+| Feature | v1.2.0 (Current) | v1.1.0 | v1.0.0 | v0.9.0 |
+|---------|------------------|---------|---------|---------|
+| **Bundle Size** | ~5.1KB | ~5.8KB | ~6.2KB | ~7.1KB |
+| **TypeScript** | ✅ Full Support | ✅ Full Support | ✅ Full Support | ❌ None |
+| **ES Modules** | ✅ ESM + CJS + UMD | ✅ ESM + CJS | ✅ ESM + CJS | ❌ CJS Only |
+| **Touch Gestures** | ✅ Mobile Swipe | ✅ Basic Touch | ❌ None | ❌ None |
+| **System Preference** | ✅ Auto Detection | ✅ Auto Detection | ✅ Auto Detection | ❌ None |
+| **Custom Themes** | ✅ Dynamic Loading | ✅ Static Only | ✅ Static Only | ❌ None |
+| **localStorage** | ✅ Immediate Save | ✅ Immediate Save | ✅ Immediate Save | ❌ Delayed |
+| **Tailwind CSS** | ✅ Full Integration | ✅ Basic Support | ✅ Basic Support | ❌ None |
+| **Bootstrap** | ✅ CSS Variables | ✅ CSS Variables | ✅ CSS Variables | ❌ None |
+| **Framework Support** | ✅ All Major | ✅ All Major | ✅ All Major | ❌ Limited |
+| **Performance** | ⚡ Optimized | ⚡ Good | ⚡ Good | ⚡ Basic |
+| **Browser Support** | 🌐 Modern + IE11 | 🌐 Modern + IE11 | 🌐 Modern + IE11 | 🌐 Limited |
+
 ## 🚀 Performance
 
 - **Bundle Size**: < 5KB minified + gzipped
@@ -318,6 +336,10 @@ WebsiteThemeSwitcher.loadTheme('custom-theme', {
 - Gesture support
 - Mobile-first approach
 
+## 🧪 Live Demo
+
+**Try it out live**: [https://my-portfolio-mnahsanofficials-projects.vercel.app/](https://my-portfolio-mnahsanofficials-projects.vercel.app/)
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
@@ -334,12 +356,21 @@ MIT License - see [LICENSE](./LICENSE) file for details.
 
 ## 📞 Support
 
-- 📧 Email: support@website-theme-switcher.com
-- 🐛 Issues: [GitHub Issues](https://github.com/your-username/website-theme-switcher/issues)
-- 📖 Documentation: [Full Documentation](https://website-theme-switcher.com)
-- 💬 Discord: [Join our community](https://discord.gg/website-theme-switcher)
+- 📧 Email: info@triotrix.com
+- 🐛 Issues: [GitHub Issues](https://github.com/mnahsanofficial/website-theme-switcher/issues)
+- 📖 Documentation: [GitHub Repository](https://github.com/mnahsanofficial/website-theme-switcher)
+- 💬 LinkedIn: [Triotrix Tech Solutions](https://www.linkedin.com/company/triotrix-tech-solutions/)
+
+## 👨‍💻 Creator
+
+**Muhammad Nazmul Ahsan**  
+- 🚀 Full Stack Developer
+- 🏢 **Triotrix Tech Solutions**
+- 🔗 [LinkedIn Profile](https://www.linkedin.com/in/mn-ahsan/)
+- 🌐 [Portfolio](https://my-portfolio-mnahsanofficials-projects.vercel.app/)
+- 📧 [Email](mailto:info@triotrix.com)
 
 ---
 
-Made with ❤️ by the Website Theme Switcher team
-# website-theme-switcher
+Made with ❤️ by [**Triotrix Tech Solutions**](https://www.linkedin.com/company/triotrix-tech-solutions/)  
+Empowering Tomorrow's Digital World 🚀
