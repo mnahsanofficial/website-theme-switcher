@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.5] - 2025-08-24
+
+### Fixed
+- **Complete Version History**: Restored all previous version history that was accidentally removed
+- **Migration Guide**: Restored comprehensive migration guide for all versions
+- **Version Support Table**: Restored detailed version comparison and support matrix
+- **localStorage Details**: Restored detailed localStorage implementation documentation
+- **Contributing Guidelines**: Restored contributing and release schedule information
+
+### Changed
+- **CHANGELOG.md**: Now contains complete history from v0.9.0 to v1.2.5
+- **Documentation**: Comprehensive changelog with all features, fixes, and technical details
+- **Version Tracking**: Complete tracking of package evolution and improvements
+
+### Technical Details
+- **Package Size**: 16.9 kB (compressed), 75.6 kB (unpacked)
+- **Build Status**: Successfully builds with TypeScript warnings (non-blocking)
+- **History Status**: ✅ Complete version history restored and maintained
+
 ## [1.2.4] - 2025-08-24
 
 ### Changed
