@@ -7,20 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-- Support for custom theme names beyond light/dark
-- Dynamic theme loading API
-- Enhanced mobile touch support
-- Accessibility improvements (ARIA labels, keyboard navigation)
-
-### Changed
-- Improved performance for large DOM trees
-- Better error handling for invalid theme configurations
-
-### Fixed
-- Memory leak in event listeners
-- Theme persistence issues in private browsing mode
-
 ## [1.2.4] - 2025-08-24
 
 ### Changed
@@ -126,4 +112,114 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Core Theme Switching**: Basic light/dark theme switching functionality
-- **HTML Attribute Support**: Support for `data-theme`
+- **HTML Attribute Support**: Support for `data-theme` attributes
+- **Framework Agnostic**: Works with React, Vue, Angular, and vanilla JavaScript
+- **Tailwind CSS Integration**: Seamless integration with Tailwind CSS
+- **Bootstrap CSS Integration**: Compatible with Bootstrap CSS framework
+- **Basic Configuration**: Simple configuration options for theme switching
+
+### Technical Details
+- **Package Size**: Optimized bundle size for production use
+- **Browser Support**: Compatible with all modern browsers
+- **Performance**: Lightweight implementation with minimal overhead
+
+## [0.9.0] - 2023-08-15
+
+### Added
+- **Beta Release**: Initial beta release for testing and feedback
+- **Core Theme Switching**: Basic light/dark theme switching functionality
+- **CSS Variable Support**: Support for CSS custom properties
+- **HTML Attribute System**: Simple HTML attribute-based theme switching
+- **Basic Event Handling**: Click and change event support
+
+### Known Issues
+- **Limited Browser Support**: Only tested in modern browsers
+- **No TypeScript**: Basic JavaScript implementation
+- **Basic Error Handling**: Limited error handling and validation
+- **No localStorage**: No theme persistence across sessions
+- **No Touch Support**: Limited mobile device support
+
+### Technical Details
+- **Package Size**: ~7.1KB (basic implementation)
+- **Dependencies**: Zero external dependencies
+- **Build System**: Basic bundling with minimal optimization
+
+---
+
+## Migration Guide
+
+### From v1.1.0 to v1.2.0
+
+The main breaking change is the new class-based API:
+
+```javascript
+// Old way (deprecated)
+import { init } from 'website-theme-switcher';
+init();
+
+// New way
+import { WebsiteThemeSwitcher } from 'website-theme-switcher';
+WebsiteThemeSwitcher.init();
+```
+
+### From v0.9.0 to v1.0.0
+
+Complete rewrite with new API:
+
+```javascript
+// Old beta API (no longer supported)
+themeSwitcher.init();
+
+// New stable API
+WebsiteThemeSwitcher.init();
+```
+
+## Version Support
+
+| Version | Status | Node.js | Browser Support | localStorage | Touch Gestures | TypeScript |
+|---------|--------|---------|-----------------|--------------|----------------|------------|
+| 1.2.x   | ✅ Current | 14+ | Modern browsers | ✅ Immediate | ✅ Swipe | ✅ Full |
+| 1.1.x   | 🔄 Maintenance | 14+ | Modern browsers | ✅ Immediate | ✅ Basic | ✅ Full |
+| 1.0.x   | 🔄 Maintenance | 12+ | Modern browsers | ✅ Immediate | ❌ None | ✅ Full |
+| 0.9.x   | ❌ Deprecated | 12+ | Limited support | ❌ None | ❌ None | ❌ None |
+
+## Release Schedule
+
+- **Patch releases** (1.2.x): Bug fixes and minor improvements
+- **Minor releases** (1.x.0): New features, backward compatible
+- **Major releases** (x.0.0): Breaking changes, major rewrites
+
+## localStorage Implementation Details
+
+### How It Works
+1. **Immediate Save**: When a theme is changed, it's instantly saved to localStorage
+2. **Automatic Restore**: On page load, the saved theme is automatically restored
+3. **Fallback Chain**: localStorage → System Preference → Default Theme
+4. **Error Handling**: Gracefully handles localStorage access issues
+
+### Configuration
+```javascript
+WebsiteThemeSwitcher.init({
+  storageKey: 'my-app-theme',        // Custom localStorage key
+  defaultTheme: 'light',             // Fallback theme
+  enableSystemPreference: true,      // Use OS preference as fallback
+  onThemeChange: (theme) => {        // Callback when theme changes
+    console.log('Theme saved to localStorage:', theme);
+  }
+});
+```
+
+### Browser Compatibility
+- **Chrome**: Full localStorage support
+- **Firefox**: Full localStorage support
+- **Safari**: Full localStorage support
+- **Edge**: Full localStorage support
+- **IE 11**: Limited support (with polyfills)
+
+## Contributing
+
+To contribute to the changelog, please follow the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format and submit a pull request.
+
+---
+
+For detailed information about each release, visit our [GitHub releases page](https://github.com/mnahsanofficial/website-theme-switcher/releases).
