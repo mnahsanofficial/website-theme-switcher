@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Theme Switcher Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌓 Website Theme Switcher</h1>
+            <p>A lightweight, framework-agnostic theme switching library</p>
+        </header>
+
+        <nav class="theme-nav">
+            <h2>Theme Switchers</h2>
+            
+            <div class="switcher-group">
+                <h3>Button Switchers</h3>
+                <button data-theme-switcher="toggle" data-themes="light,dark" class="btn btn-primary">
+                    🌓 Toggle Theme
+                </button>
+                
+                <button data-theme-switcher="set" data-theme="light" class="btn btn-light">
+                    ☀️ Light
+                </button>
+                
+                <button data-theme-switcher="set" data-theme="dark" class="btn btn-dark">
+                    🌙 Dark
+                </button>
+            </div>
+
+            <div class="switcher-group">
+                <h3>Select Dropdown</h3>
+                <select data-theme-switcher="select" class="select">
+                    <option value="light">☀️ Light Theme</option>
+                    <option value="dark">🌙 Dark Theme</option>
+                    <option value="sepia">🍂 Sepia Theme</option>
+                </select>
+            </div>
+
+            <div class="switcher-group">
+                <h3>Toggle Switch</h3>
+                <label class="toggle-switch">
+                    <input type="checkbox" data-theme-switcher="toggle" data-themes="light,dark">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <section class="demo-section">
+                <h2>Features Demo</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🎨 CSS Variables</h3>
+                        <p>This text and background use CSS variables that change with themes.</p>
+                        <div class="color-preview">
+                            <div class="color-swatch primary"></div>
+                            <div class="color-swatch secondary"></div>
+                            <div class="color-swatch accent"></div>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>💾 Persistence</h3>
+                        <p>Your theme preference is automatically saved and restored.</p>
+                        <button id="checkTheme" class="btn btn-secondary">Check Current Theme</button>
+                        <p id="themeInfo">Current theme: <span id="currentTheme">light</span></p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>📱 Touch Gestures</h3>
+                        <p>Swipe left/right on mobile to change themes (if enabled).</p>
+                        <button id="toggleTouch" class="btn btn-secondary">Enable Touch Gestures</button>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>⚙️ Custom Themes</h3>
+                        <p>Load custom themes dynamically.</p>
+                        <button id="loadCustom" class="btn btn-secondary">Load Custom Theme</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>Tailwind CSS Integration</h2>
+                <div class="tailwind-demo">
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-gray-900 dark:text-white text-xl font-bold mb-4">
+                            Tailwind CSS Classes
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            This card uses Tailwind's dark: variants to automatically adapt to themes.
+                        </p>
+                        <div class="mt-4 space-y-2">
+                            <div class="bg-blue-500 dark:bg-blue-600 text-white px-3 py-2 rounded">
+                                Primary Button
+                            </div>
+                            <div class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-2 rounded">
+                                Secondary Button
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>Bootstrap Integration</h2>
+                <div class="bootstrap-demo">
+                    <div class="bootstrap-card">
+                        <h3>Bootstrap Components</h3>
+                        <p>Bootstrap components that adapt to theme changes.</p>
+                        <div class="bootstrap-buttons">
+                            <button class="bootstrap-btn bootstrap-btn-primary">Primary</button>
+                            <button class="bootstrap-btn bootstrap-btn-secondary">Secondary</button>
+                            <button class="bootstrap-btn bootstrap-btn-success">Success</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Made with ❤️ by the Website Theme Switcher team</p>
+            <p>Check out the <a href="https://github.com/your-username/website-theme-switcher" target="_blank">GitHub repository</a></p>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { WebsiteThemeSwitcher } from '../dist/index.js';
+
+        // Initialize theme switcher
+        WebsiteThemeSwitcher.init({
+            defaultTheme: 'light',
+            enableSystemPreference: true,
+            transitionDuration: 300,
+            onThemeChange: (theme) => {
+                console.log('Theme changed to:', theme);
+                updateThemeInfo();
+            }
+        });
+
+        // Demo functionality
+        function updateThemeInfo() {
+            const currentTheme = WebsiteThemeSwitcher.getCurrentTheme();
+            document.getElementById('currentTheme').textContent = currentTheme;
+            document.getElementById('themeInfo').textContent = `Current theme: ${currentTheme}`;
+        }
+
+        // Check theme button
+        document.getElementById('checkTheme').addEventListener('click', () => {
+            const theme = WebsiteThemeSwitcher.getCurrentTheme();
+            const isDark = WebsiteThemeSwitcher.isDarkMode();
+            const systemPrefersDark = WebsiteThemeSwitcher.getSystemPreference();
+            
+            alert(`Current Theme: ${theme}\nIs Dark Mode: ${isDark}\nSystem Prefers Dark: ${systemPrefersDark}`);
+        });
+
+        // Toggle touch gestures
+        let touchEnabled = false;
+        document.getElementById('toggleTouch').addEventListener('click', () => {
+            touchEnabled = !touchEnabled;
+            WebsiteThemeSwitcher.init({
+                enableTouchGestures: touchEnabled,
+                debug: true
+            });
+            
+            const button = document.getElementById('toggleTouch');
+            button.textContent = touchEnabled ? 'Disable Touch Gestures' : 'Enable Touch Gestures';
+            button.classList.toggle('btn-success', touchEnabled);
+        });
+
+        // Load custom theme
+        document.getElementById('loadCustom').addEventListener('click', () => {
+            const customTheme = {
+                '--bg-primary': '#2d3748',
+                '--text-primary': '#e2e8f0',
+                '--accent-color': '#f56565',
+                '--secondary-color': '#4a5568'
+            };
+            
+            WebsiteThemeSwitcher.loadTheme('custom', customTheme);
+            WebsiteThemeSwitcher.setTheme('custom');
+            
+            // Add custom theme to select
+            const select = document.querySelector('[data-theme-switcher="select"]');
+            const option = document.createElement('option');
+            option.value = 'custom';
+            option.textContent = '🎨 Custom Theme';
+            select.appendChild(option);
+            select.value = 'custom';
+        });
+
+        // Initial theme info update
+        updateThemeInfo();
+    </script>
+</body>
+</html>

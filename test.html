@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Theme Switcher - localStorage Test</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --text-primary: #1a1a1a;
+            --accent-color: #3b82f6;
+            --border-color: #e2e8f0;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --text-primary: #ffffff;
+            --accent-color: #60a5fa;
+            --border-color: #334155;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: var(--accent-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-danger {
+            background: #ef4444;
+        }
+
+        .theme-info {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+
+        .storage-info {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .storage-info h3 {
+            color: #0c4a6e;
+            margin-top: 0;
+        }
+
+        .storage-info pre {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+
+        .test-instructions {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .test-instructions h3 {
+            color: #92400e;
+            margin-top: 0;
+        }
+
+        .test-instructions ol {
+            color: #78350f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌓 Website Theme Switcher - localStorage Test</h1>
+        
+        <div class="test-instructions">
+            <h3>🧪 Test Instructions</h3>
+            <ol>
+                <li>Change the theme using the buttons below</li>
+                <li>Check that the theme persists in localStorage</li>
+                <li>Refresh the page - theme should remain the same</li>
+                <li>Clear localStorage and refresh - should return to default</li>
+                <li>Test with browser dev tools → Application → Local Storage</li>
+            </ol>
+        </div>
+
+        <div class="theme-info">
+            <h3>🎨 Theme Switchers</h3>
+            <button data-theme-switcher="toggle" data-themes="light,dark">
+                🌓 Toggle Theme
+            </button>
+            
+            <button data-theme-switcher="set" data-theme="light">
+                ☀️ Light
+            </button>
+            
+            <button data-theme-switcher="set" data-theme="dark">
+                🌙 Dark
+            </button>
+        </div>
+
+        <div class="theme-info">
+            <h3>📊 Current Theme Status</h3>
+            <p><strong>Current Theme:</strong> <span id="currentTheme">light</span></p>
+            <p><strong>Is Dark Mode:</strong> <span id="isDarkMode">false</span></p>
+            <p><strong>System Prefers Dark:</strong> <span id="systemPrefersDark">false</span></p>
+            <button onclick="checkTheme()">🔄 Refresh Theme Info</button>
+        </div>
+
+        <div class="storage-info">
+            <h3>💾 localStorage Status</h3>
+            <p><strong>Storage Key:</strong> <code>website-theme</code></p>
+            <p><strong>Current Value:</strong> <span id="storageValue">null</span></p>
+            <button onclick="checkStorage()">🔍 Check localStorage</button>
+            <button onclick="clearStorage()" class="btn-danger">🗑️ Clear localStorage</button>
+            <button onclick="showAllStorage()">📋 Show All Storage</button>
+        </div>
+
+        <div class="theme-info">
+            <h3>✅ Features Tested</h3>
+            <ul>
+                <li>✅ Theme switching</li>
+                <li>✅ CSS variables</li>
+                <li>✅ HTML attributes</li>
+                <li>✅ localStorage persistence</li>
+                <li>✅ Smooth transitions</li>
+                <li>✅ System preference detection</li>
+            </ul>
+        </div>
+
+        <div class="theme-info">
+            <h3>🔧 Debug Tools</h3>
+            <button onclick="forceTheme('light')">Force Light Theme</button>
+            <button onclick="forceTheme('dark')">Force Dark Theme</button>
+            <button onclick="simulateSystemChange()">Simulate System Change</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { WebsiteThemeSwitcher } from './dist/index.js';
+
+        // Initialize theme switcher with localStorage enabled
+        WebsiteThemeSwitcher.init({
+            defaultTheme: 'light',
+            storageKey: 'website-theme',
+            enableSystemPreference: true,
+            transitionDuration: 300,
+            debug: true, // Enable debug mode to see localStorage operations
+            onThemeChange: (theme) => {
+                console.log('🌓 Theme changed to:', theme);
+                updateThemeInfo();
+                updateStorageInfo();
+            }
+        });
+
+        function updateThemeInfo() {
+            const currentTheme = WebsiteThemeSwitcher.getCurrentTheme();
+            const isDark = WebsiteThemeSwitcher.isDarkMode();
+            const systemPrefersDark = WebsiteThemeSwitcher.getSystemPreference();
+            
+            document.getElementById('currentTheme').textContent = currentTheme;
+            document.getElementById('isDarkMode').textContent = isDark;
+            document.getElementById('systemPrefersDark').textContent = systemPrefersDark;
+        }
+
+        function updateStorageInfo() {
+            const storageValue = localStorage.getItem('website-theme');
+            document.getElementById('storageValue').textContent = storageValue || 'null';
+        }
+
+        window.checkTheme = function() {
+            updateThemeInfo();
+            updateStorageInfo();
+        };
+
+        window.checkStorage = function() {
+            updateStorageInfo();
+            alert(`localStorage 'website-theme': ${localStorage.getItem('website-theme') || 'null'}`);
+        };
+
+        window.clearStorage = function() {
+            localStorage.removeItem('website-theme');
+            updateStorageInfo();
+            alert('localStorage cleared! Refresh the page to see default theme.');
+        };
+
+        window.showAllStorage = function() {
+            const allStorage = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                allStorage[key] = localStorage.getItem(key);
+            }
+            alert('All localStorage:\n' + JSON.stringify(allStorage, null, 2));
+        };
+
+        window.forceTheme = function(theme) {
+            WebsiteThemeSwitcher.setTheme(theme);
+        };
+
+        window.simulateSystemChange = function() {
+            // Simulate system preference change
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            if (mediaQuery.matches) {
+                alert('System currently prefers dark mode');
+            } else {
+                alert('System currently prefers light mode');
+            }
+        };
+
+        // Initial updates
+        updateThemeInfo();
+        updateStorageInfo();
+
+        // Listen for storage changes (useful for testing with multiple tabs)
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'website-theme') {
+                console.log('Storage changed:', e.newValue);
+                updateStorageInfo();
+            }
+        });
+
+        // Log initial state
+        console.log('🚀 Website Theme Switcher initialized');
+        console.log('📱 Current theme:', WebsiteThemeSwitcher.getCurrentTheme());
+        console.log('💾 localStorage value:', localStorage.getItem('website-theme'));
+        console.log('🌐 System prefers dark:', WebsiteThemeSwitcher.getSystemPreference());
+    </script>
+</body>
+</html>
