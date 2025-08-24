@@ -28,7 +28,7 @@ A lightweight, framework-agnostic JavaScript library for seamless theme switchin
 <script src="https://unpkg.com/website-theme-switcher@latest/dist/index.js"></script>
 <script>
   // Initialize theme switcher
-  window.WebsiteThemeSwitcher.init();
+  WebsiteThemeSwitcher.init();
 </script>
 ```
 
@@ -42,83 +42,87 @@ yarn add website-theme-switcher
 pnpm add website-theme-switcher
 ```
 
-## 🎯 Basic Usage
+## 🎯 Simple Theme Toggle (5 minutes)
 
-### 1. CSS Setup
+Add a toggle button to your navbar that switches between light and dark themes **without changing your website design**.
 
-Define your theme variables in CSS:
+### 1. Add Toggle Button to Your Navbar
 
-```css
-:root {
-  /* Light theme (default) */
-  --bg-primary: #ffffff;
-  --text-primary: #1a1a1a;
-  --accent-color: #3b82f6;
-}
-
-[data-theme="dark"] {
-  /* Dark theme */
-  --bg-primary: #1a1a1a;
-  --text-primary: #ffffff;
-  --accent-color: #60a5fa;
-}
-
-/* Apply variables to elements */
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-```
-
-### 2. HTML Theme Switchers
-
-Choose from multiple switcher types:
-
-#### Button Switcher
 ```html
-<button data-theme-switcher="toggle" data-themes="light,dark">
-  🌓 Toggle Theme
+<button class="theme-toggle" data-toggle-theme="dark,light">
+    🌓 Toggle Theme
 </button>
 ```
 
-#### Individual Theme Buttons
-```html
-<button data-theme-switcher="set" data-theme="light">☀️ Light</button>
-<button data-theme-switcher="set" data-theme="dark">🌙 Dark</button>
+### 2. Add CSS Variables
+
+```css
+:root {
+  /* Light theme (your existing website - unchanged) */
+  --bg-color: #ffffff;        /* White background */
+  --text-color: #333333;      /* Dark text */
+}
+
+[data-theme="dark"] {
+  /* Dark theme (minimal changes) */
+  --bg-color: #000000;        /* Black background */
+  --text-color: #ffffff;      /* White text for readability */
+}
 ```
 
-#### Select Dropdown
+### 3. Replace Hardcoded Colors
+
+```css
+body {
+  background-color: var(--bg-color);    /* Only this changes */
+  color: var(--text-color);             /* Only this changes */
+}
+```
+
+### 4. Initialize Theme Switcher
+
 ```html
-<select data-theme-switcher="select">
+<script src="https://unpkg.com/website-theme-switcher@latest/dist/index.js"></script>
+<script>
+  WebsiteThemeSwitcher.init();
+</script>
+```
+
+### 🧪 Test It
+
+Open `demo/package-demo.html` in your browser to see the working toggle button!
+
+## 🎨 HTML Attributes
+
+The package automatically detects these HTML attributes:
+
+### Toggle Between Themes
+```html
+<button data-toggle-theme="dark,light">🌓 Toggle</button>
+```
+
+### Set Specific Theme
+```html
+<button data-set-theme="dark">🌙 Dark</button>
+<button data-set-theme="light">☀️ Light</button>
+```
+
+### Select Dropdown
+```html
+<select data-choose-theme>
   <option value="light">☀️ Light</option>
   <option value="dark">🌙 Dark</option>
 </select>
 ```
 
-#### Toggle Switch
+### Custom Storage Key
 ```html
-<label class="theme-toggle">
-  <input type="checkbox" data-theme-switcher="toggle" data-themes="light,dark">
-  <span class="slider"></span>
-</label>
+<button data-toggle-theme="dark,light" data-key="my-theme">Toggle</button>
 ```
 
-### 3. JavaScript Initialization
-
-```javascript
-import { WebsiteThemeSwitcher } from 'website-theme-switcher';
-
-// Initialize with default options
-WebsiteThemeSwitcher.init();
-
-// Or with custom options
-WebsiteThemeSwitcher.init({
-  defaultTheme: 'light',
-  storageKey: 'my-theme',
-  enableSystemPreference: true,
-  transitionDuration: 300
-});
+### Active Class
+```html
+<button data-set-theme="dark" data-act-class="active">Dark</button>
 ```
 
 ## 🎨 Tailwind CSS Integration
@@ -159,7 +163,7 @@ module.exports = {
 ```html
 <html class="light" data-theme="light">
   <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-    <button data-theme-switcher="toggle" data-themes="light,dark">
+    <button data-toggle-theme="dark,light">
       🌓 Toggle
     </button>
   </body>
@@ -189,7 +193,7 @@ module.exports = {
 ```html
 <body class="bg-body text-body">
   <div class="container">
-    <button class="btn btn-primary" data-theme-switcher="toggle" data-themes="light,dark">
+    <button class="btn btn-primary" data-toggle-theme="dark,light">
       🌓 Switch Theme
     </button>
   </div>
@@ -224,34 +228,20 @@ WebsiteThemeSwitcher.init({
 });
 ```
 
-### Custom Theme Switchers
-
-```javascript
-// Create custom switcher
-const customSwitcher = WebsiteThemeSwitcher.createSwitcher({
-  type: 'custom',
-  element: document.querySelector('.my-custom-switcher'),
-  themes: ['light', 'dark', 'sepia'],
-  onChange: (theme) => {
-    // Custom logic
-  }
-});
-```
-
 ### API Methods
 
 ```javascript
 // Get current theme
-const currentTheme = WebsiteThemeSwitcher.getCurrentTheme();
+const currentTheme = WebsiteThemeSwitcher.getInstance().getCurrentTheme();
 
 // Set theme programmatically
-WebsiteThemeSwitcher.setTheme('dark');
+WebsiteThemeSwitcher.getInstance().setTheme('dark');
 
 // Toggle between themes
-WebsiteThemeSwitcher.toggleTheme(['light', 'dark']);
+WebsiteThemeSwitcher.getInstance().toggleTheme(['light', 'dark']);
 
 // Check if dark mode is active
-const isDark = WebsiteThemeSwitcher.isDarkMode();
+const isDark = WebsiteThemeSwitcher.getInstance().isDarkMode();
 
 // Get system preference
 const systemPrefersDark = WebsiteThemeSwitcher.getSystemPreference();
@@ -259,16 +249,63 @@ const systemPrefersDark = WebsiteThemeSwitcher.getSystemPreference();
 
 ## 🌐 Framework Examples
 
-See the [Framework Installation Guide](./FRAMEWORK_INSTALLATION.md) for detailed setup instructions for:
+### React
+```jsx
+import React, { useEffect } from 'react';
+import { WebsiteThemeSwitcher } from 'website-theme-switcher';
 
-- React (with hooks)
-- Vue 3 (Composition API)
-- Angular
-- Svelte
-- Next.js
-- Nuxt.js
-- Vite
-- Webpack
+function App() {
+  useEffect(() => {
+    WebsiteThemeSwitcher.init();
+  }, []);
+
+  return (
+    <div className="app">
+      <button data-toggle-theme="dark,light">
+        🌓 Toggle Theme
+      </button>
+    </div>
+  );
+}
+```
+
+### Vue 3
+```vue
+<template>
+  <button data-toggle-theme="dark,light">
+    🌓 Toggle Theme
+  </button>
+</template>
+
+<script setup>
+import { onMounted } from 'vue';
+import { WebsiteThemeSwitcher } from 'website-theme-switcher';
+
+onMounted(() => {
+  WebsiteThemeSwitcher.init();
+});
+</script>
+```
+
+### Angular
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { WebsiteThemeSwitcher } from 'website-theme-switcher';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <button data-toggle-theme="dark,light">
+      🌓 Toggle Theme
+    </button>
+  `
+})
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    WebsiteThemeSwitcher.init();
+  }
+}
+```
 
 ## 🎨 Custom Themes
 
@@ -283,14 +320,14 @@ See the [Framework Installation Guide](./FRAMEWORK_INSTALLATION.md) for detailed
 ```
 
 ```html
-<button data-theme-switcher="set" data-theme="sepia">🍂 Sepia</button>
+<button data-set-theme="sepia">🍂 Sepia</button>
 ```
 
 ### Dynamic Theme Loading
 
 ```javascript
 // Load theme dynamically
-WebsiteThemeSwitcher.loadTheme('custom-theme', {
+WebsiteThemeSwitcher.getInstance().loadTheme('custom-theme', {
   '--bg-primary': '#1e293b',
   '--text-primary': '#f1f5f9'
 });
@@ -298,7 +335,7 @@ WebsiteThemeSwitcher.loadTheme('custom-theme', {
 
 ## 📊 Version Comparison Table
 
-| Feature | v1.2.0 (Current) | v1.1.0 | v1.0.0 | v0.9.0 |
+| Feature | v1.2.2 (Current) | v1.1.0 | v1.0.0 | v0.9.0 |
 |---------|------------------|---------|---------|---------|
 | **Bundle Size** | ~5.1KB | ~5.8KB | ~6.2KB | ~7.1KB |
 | **TypeScript** | ✅ Full Support | ✅ Full Support | ✅ Full Support | ❌ None |
@@ -350,7 +387,6 @@ MIT License - see [LICENSE](./LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- Inspired by [theme-change](https://github.com/saadeghi/theme-change)
 - Built with modern web standards
 - Community-driven development
 

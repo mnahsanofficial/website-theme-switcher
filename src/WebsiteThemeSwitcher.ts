@@ -1,16 +1,14 @@
 import type { ThemeOptions, ThemeSwitcherConfig, ThemeData } from './types';
 
 export class WebsiteThemeSwitcher {
-  private static instance: WebsiteThemeSwitcher;
+  private static instance: WebsiteThemeSwitcher | undefined;
   private options: Required<ThemeOptions>;
   private currentTheme: string = 'light';
-  private switchers: Map<HTMLElement, ThemeSwitcherConfig> = new Map();
-  private touchStart: { x: number; y: number } | null = null;
 
-  private constructor() {
+  constructor(options: ThemeOptions = {}) {
     this.options = {
       defaultTheme: 'light',
-      storageKey: 'website-theme',
+      storageKey: 'theme',
       enableSystemPreference: false,
       transitionDuration: 300,
       themes: ['light', 'dark'],
@@ -18,58 +16,192 @@ export class WebsiteThemeSwitcher {
       debug: false,
       enableTouchGestures: false,
       touchThreshold: 50,
+      ...options
     };
-  }
-
-  /**
-   * Get singleton instance
-   */
-  public static getInstance(): WebsiteThemeSwitcher {
-    if (!WebsiteThemeSwitcher.instance) {
-      WebsiteThemeSwitcher.instance = new WebsiteThemeSwitcher();
-    }
-    return WebsiteThemeSwitcher.instance;
   }
 
   /**
    * Initialize the theme switcher
    */
-  public static init(options: ThemeOptions = {}): void {
-    const instance = WebsiteThemeSwitcher.getInstance();
-    instance.initialize(options);
+  public static init(options?: ThemeOptions): WebsiteThemeSwitcher {
+    if (!WebsiteThemeSwitcher.instance) {
+      WebsiteThemeSwitcher.instance = new WebsiteThemeSwitcher(options);
+      WebsiteThemeSwitcher.instance.setupEventListeners();
+      WebsiteThemeSwitcher.instance.setInitialTheme();
+    }
+    return WebsiteThemeSwitcher.instance;
   }
 
   /**
-   * Initialize with options
+   * Get the current instance
    */
-  private initialize(options: ThemeOptions): void {
-    this.options = { ...this.options, ...options };
-    
-    if (this.options.debug) {
-      console.log('WebsiteThemeSwitcher: Initializing with options:', this.options);
-    }
+  public static getInstance(): WebsiteThemeSwitcher | undefined {
+    return WebsiteThemeSwitcher.instance;
+  }
 
-    // Set initial theme
-    this.setInitialTheme();
+  /**
+   * Set up event listeners for theme switchers
+   */
+  private setupEventListeners(): void {
+    // Handle button theme setters
+    this.setupButtonSwitchers();
     
-    // Setup event listeners
-    this.setupEventListeners();
+    // Handle toggle switchers
+    this.setupToggleSwitchers();
     
-    // Initialize existing switchers
-    this.initializeExistingSwitchers();
+    // Handle select switchers
+    this.setupSelectSwitchers();
     
-    // Setup touch gestures if enabled
+    // Handle touch gestures if enabled
     if (this.options.enableTouchGestures) {
       this.setupTouchGestures();
     }
+  }
 
-    if (this.options.debug) {
-      console.log('WebsiteThemeSwitcher: Initialized successfully');
+  /**
+   * Setup button switchers (data-set-theme)
+   */
+  private setupButtonSwitchers(): void {
+    const buttons = document.querySelectorAll('[data-set-theme]');
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const theme = button.getAttribute('data-set-theme') || '';
+        const activeClass = button.getAttribute('data-act-class');
+        const customKey = button.getAttribute('data-key');
+        
+        if (theme) {
+          this.setTheme(theme, customKey || undefined);
+        }
+        
+        // Handle active class
+        if (activeClass) {
+          // Remove active class from all buttons
+          document.querySelectorAll('[data-set-theme]').forEach(btn => {
+            btn.classList.remove(activeClass);
+          });
+          // Add active class to clicked button
+          button.classList.add(activeClass);
+        }
+      });
+    });
+  }
+
+  /**
+   * Setup toggle switchers (data-toggle-theme)
+   */
+  private setupToggleSwitchers(): void {
+    const toggles = document.querySelectorAll('[data-toggle-theme]');
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const themesList = toggle.getAttribute('data-toggle-theme');
+        const activeClass = toggle.getAttribute('data-act-class');
+        const customKey = toggle.getAttribute('data-key');
+        
+        if (themesList) {
+          const themesArray = themesList.split(',');
+          const currentTheme = this.getCurrentTheme(customKey || undefined);
+          
+          // Simple toggle logic - switch between first two themes
+          if (themesArray.length >= 2) {
+            const newTheme = currentTheme === themesArray[0] ? themesArray[1] : themesArray[0];
+            this.setTheme(newTheme, customKey || undefined);
+          }
+        }
+        
+        // Handle active class
+        if (activeClass) {
+          document.querySelectorAll('[data-toggle-theme]').forEach(tgl => {
+            tgl.classList.toggle(activeClass);
+          });
+        }
+      });
+    });
+  }
+
+  /**
+   * Setup select switchers (data-choose-theme)
+   */
+  private setupSelectSwitchers(): void {
+    const selects = document.querySelectorAll('[data-choose-theme]');
+    selects.forEach(select => {
+      select.addEventListener('change', (e) => {
+        const target = e.target as HTMLSelectElement;
+        const theme = target.value;
+        const customKey = select.getAttribute('data-key');
+        
+        if (theme) {
+          if (customKey) {
+            this.setTheme(theme, customKey);
+          } else {
+            this.setTheme(theme);
+          }
+        } else {
+          if (customKey) {
+            this.removeTheme(customKey);
+          } else {
+            this.removeTheme();
+          }
+        }
+      });
+    });
+  }
+
+  /**
+   * Setup touch gestures for mobile
+   */
+  private setupTouchGestures(): void {
+    let startX = 0;
+    let startY = 0;
+    let isSwiping = false;
+
+    document.addEventListener('touchstart', (e: TouchEvent) => {
+      startX = e.touches[0]?.clientX || 0;
+      startY = e.touches[0]?.clientY || 0;
+      isSwiping = false;
+    });
+
+    document.addEventListener('touchmove', (e: TouchEvent) => {
+      if (!isSwiping) {
+        const currentX = e.touches[0]?.clientX || 0;
+        const currentY = e.touches[0]?.clientY || 0;
+        const diffX = Math.abs(currentX - startX);
+        const diffY = Math.abs(currentY - startY);
+
+        if (diffX > this.options.touchThreshold && diffX > diffY) {
+          isSwiping = true;
+          const direction = currentX > startX ? 'right' : 'left';
+          this.handleSwipeGesture(direction);
+        }
+      }
+    });
+  }
+
+  /**
+   * Handle swipe gesture
+   */
+  private handleSwipeGesture(direction: 'left' | 'right'): void {
+    const currentTheme = this.getCurrentTheme();
+    const themeIndex = this.options.themes.indexOf(currentTheme);
+    
+    if (direction === 'right' && themeIndex > 0) {
+      // Swipe right - go to previous theme
+      const prevTheme = this.options.themes[themeIndex - 1];
+      if (prevTheme) {
+        this.setTheme(prevTheme);
+      }
+    } else if (direction === 'left' && themeIndex < this.options.themes.length - 1) {
+      // Swipe left - go to next theme
+      const nextTheme = this.options.themes[themeIndex + 1];
+      if (nextTheme) {
+        this.setTheme(nextTheme);
+      }
     }
   }
 
   /**
-   * Set initial theme based on saved preference or system preference
+   * Set the initial theme
    */
   private setInitialTheme(): void {
     const savedTheme = this.getSavedTheme();
@@ -82,16 +214,17 @@ export class WebsiteThemeSwitcher {
     } else {
       this.currentTheme = this.options.defaultTheme;
     }
-
+    
     this.applyTheme(this.currentTheme);
   }
 
   /**
    * Get saved theme from localStorage
    */
-  private getSavedTheme(): string | null {
+  private getSavedTheme(key?: string): string | null {
     try {
-      return localStorage.getItem(this.options.storageKey);
+      const storageKey = key || this.options.storageKey;
+      return localStorage.getItem(storageKey);
     } catch {
       return null;
     }
@@ -100,9 +233,10 @@ export class WebsiteThemeSwitcher {
   /**
    * Save theme to localStorage
    */
-  private saveTheme(theme: string): void {
+  private saveTheme(theme: string, key?: string): void {
     try {
-      localStorage.setItem(this.options.storageKey, theme);
+      const storageKey = key || this.options.storageKey;
+      localStorage.setItem(storageKey, theme);
     } catch (error) {
       if (this.options.debug) {
         console.warn('WebsiteThemeSwitcher: Failed to save theme to localStorage:', error);
@@ -111,296 +245,137 @@ export class WebsiteThemeSwitcher {
   }
 
   /**
-   * Get system preference for dark mode
-   */
-  public static getSystemPreference(): boolean {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-
-  /**
    * Apply theme to the document
    */
   private applyTheme(theme: string): void {
-    const html = document.documentElement;
-    const body = document.body;
-
-    // Remove all existing theme classes and attributes
-    this.options.themes.forEach(t => {
-      html.classList.remove(t);
-      html.removeAttribute(`data-theme-${t}`);
-    });
-
-    // Add new theme class and attribute
-    html.classList.add(theme);
-    html.setAttribute('data-theme', theme);
-    html.setAttribute(`data-theme-${theme}`, '');
-
-    // Apply transition
-    if (this.options.transitionDuration > 0) {
-      body.style.transition = `all ${this.options.transitionDuration}ms ease`;
+    if (theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
     }
-
+    
     this.currentTheme = theme;
-    this.saveTheme(theme);
-
+    
+    // Call callback if provided
+    if (this.options.onThemeChange) {
+      this.options.onThemeChange(theme);
+    }
+    
     if (this.options.debug) {
       console.log('WebsiteThemeSwitcher: Theme applied:', theme);
     }
-
-    // Call callback
-    this.options.onThemeChange(theme);
   }
 
   /**
-   * Setup event listeners for theme switchers
+   * Set a specific theme
    */
-  private setupEventListeners(): void {
-    document.addEventListener('click', this.handleClick.bind(this));
-    document.addEventListener('change', this.handleChange.bind(this));
-  }
-
-  /**
-   * Handle click events on theme switchers
-   */
-  private handleClick(event: Event): void {
-    const target = event.target as HTMLElement;
-    
-    if (!target.hasAttribute('data-theme-switcher')) {
-      return;
-    }
-
-    const action = target.getAttribute('data-theme-switcher');
-    const theme = target.getAttribute('data-theme');
-    const themes = target.getAttribute('data-themes');
-
-    switch (action) {
-      case 'toggle':
-        if (themes) {
-          const themeList = themes.split(',');
-          WebsiteThemeSwitcher.toggleTheme(themeList);
-        }
-        break;
-      case 'set':
-        if (theme) {
-          WebsiteThemeSwitcher.setTheme(theme);
-        }
-        break;
-    }
-  }
-
-  /**
-   * Handle change events on select elements
-   */
-  private handleChange(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    
-    if (target.getAttribute('data-theme-switcher') === 'select') {
-      WebsiteThemeSwitcher.setTheme(target.value);
-    }
-  }
-
-  /**
-   * Initialize existing theme switchers in the DOM
-   */
-  private initializeExistingSwitchers(): void {
-    const switchers = document.querySelectorAll('[data-theme-switcher]');
-    switchers.forEach(element => {
-      this.initializeSwitcher(element as HTMLElement);
-    });
-  }
-
-  /**
-   * Initialize a theme switcher element
-   */
-  private initializeSwitcher(element: HTMLElement): void {
-    const action = element.getAttribute('data-theme-switcher');
-    const themes = element.getAttribute('data-themes')?.split(',') || this.options.themes;
-    
-    if (action && themes) {
-      const config: ThemeSwitcherConfig = {
-        type: action as any,
-        element,
-        themes,
-      };
-      
-      this.switchers.set(element, config);
-      
-      if (this.options.debug) {
-        console.log('WebsiteThemeSwitcher: Initialized switcher:', config);
-      }
-    }
-  }
-
-  /**
-   * Setup touch gestures for mobile
-   */
-  private setupTouchGestures(): void {
-    document.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
-    document.addEventListener('touchend', this.handleTouchEnd.bind(this), { passive: true });
-  }
-
-  /**
-   * Handle touch start
-   */
-  private handleTouchStart(event: TouchEvent): void {
-    if (event.touches.length === 1) {
-      this.touchStart = {
-        x: event.touches[0]?.clientX || 0,
-        y: event.touches[0]?.clientY || 0,
-      };
-    }
-  }
-
-  /**
-   * Handle touch end
-   */
-  private handleTouchEnd(event: TouchEvent): void {
-    if (!this.touchStart || event.changedTouches.length !== 1) {
-      return;
-    }
-
-    const touchEnd = {
-      x: event.changedTouches[0]?.clientX || 0,
-      y: event.changedTouches[0]?.clientY || 0,
-    };
-
-    const deltaX = Math.abs(touchEnd.x - this.touchStart.x);
-    const deltaY = Math.abs(touchEnd.y - this.touchStart.y);
-
-    // Check if it's a horizontal swipe
-    if (deltaX > this.options.touchThreshold && deltaX > deltaY) {
-      if (touchEnd.x > this.touchStart.x) {
-        // Swipe right - next theme
-        this.nextTheme();
+  public setTheme(theme: string, key?: string): void {
+    if (theme && this.options.themes.includes(theme)) {
+      this.applyTheme(theme);
+      if (key) {
+        this.saveTheme(theme, key);
       } else {
-        // Swipe left - previous theme
-        this.previousTheme();
+        this.saveTheme(theme);
       }
     }
+  }
 
-    this.touchStart = null;
+  /**
+   * Remove theme (set to default)
+   */
+  public removeTheme(key?: string): void {
+    this.applyTheme('');
+    if (key) {
+      this.saveTheme('', key);
+    } else {
+      this.saveTheme('');
+    }
   }
 
   /**
    * Get current theme
    */
-  public static getCurrentTheme(): string {
-    return WebsiteThemeSwitcher.getInstance().currentTheme;
-  }
-
-  /**
-   * Set theme
-   */
-  public static setTheme(theme: string): void {
-    const instance = WebsiteThemeSwitcher.getInstance();
-    if (instance.options.themes.includes(theme)) {
-      instance.applyTheme(theme);
-    } else if (instance.options.debug) {
-      console.warn('WebsiteThemeSwitcher: Invalid theme:', theme);
+  public getCurrentTheme(key?: string): string {
+    if (key) {
+      return this.getSavedTheme(key) || '';
     }
+    return this.currentTheme;
   }
 
   /**
    * Toggle between themes
    */
-  public static toggleTheme(themes: string[]): void {
-    const instance = WebsiteThemeSwitcher.getInstance();
-    const currentIndex = themes.indexOf(instance.currentTheme);
+  public toggleTheme(themes: string[] = ['light', 'dark']): void {
+    const currentTheme = this.getCurrentTheme();
+    const currentIndex = themes.indexOf(currentTheme);
     const nextIndex = (currentIndex + 1) % themes.length;
     const nextTheme = themes[nextIndex];
-    
     if (nextTheme) {
-      instance.applyTheme(nextTheme);
+      this.setTheme(nextTheme);
     }
   }
 
   /**
    * Check if dark mode is active
    */
-  public static isDarkMode(): boolean {
-    return WebsiteThemeSwitcher.getCurrentTheme() === 'dark';
+  public isDarkMode(): boolean {
+    return this.currentTheme === 'dark';
   }
 
   /**
-   * Next theme in the list
+   * Get system preference
    */
-  private nextTheme(): void {
-    const currentIndex = this.options.themes.indexOf(this.currentTheme);
-    const nextIndex = (currentIndex + 1) % this.options.themes.length;
-    const nextTheme = this.options.themes[nextIndex];
-    if (nextTheme) {
-      this.applyTheme(nextTheme);
-    }
+  public static getSystemPreference(): boolean {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
   /**
-   * Previous theme in the list
+   * Create a custom switcher
    */
-  private previousTheme(): void {
-    const currentIndex = this.options.themes.indexOf(this.currentTheme);
-    const prevIndex = currentIndex === 0 ? this.options.themes.length - 1 : currentIndex - 1;
-    const prevTheme = this.options.themes[prevIndex];
-    if (prevTheme) {
-      this.applyTheme(prevTheme);
-    }
-  }
-
-  /**
-   * Create a custom theme switcher
-   */
-  public static createSwitcher(config: ThemeSwitcherConfig): void {
-    const instance = WebsiteThemeSwitcher.getInstance();
-    instance.switchers.set(config.element, config);
+  public createSwitcher(config: ThemeSwitcherConfig): void {
+    const { type, element, themes, onChange } = config;
     
-    if (instance.options.debug) {
-      console.log('WebsiteThemeSwitcher: Custom switcher created:', config);
+    if (!element) return;
+    
+    switch (type) {
+      case 'custom':
+        element.addEventListener('click', () => {
+          const currentTheme = this.getCurrentTheme();
+          const currentIndex = themes.indexOf(currentTheme);
+          const nextIndex = (currentIndex + 1) % themes.length;
+          const nextTheme = themes[nextIndex];
+          
+          if (nextTheme) {
+            this.setTheme(nextTheme);
+            if (onChange) onChange(nextTheme);
+          }
+        });
+        break;
     }
   }
 
   /**
    * Load a custom theme dynamically
    */
-  public static loadTheme(name: string, variables: Record<string, string>): void {
-    const instance = WebsiteThemeSwitcher.getInstance();
+  public loadTheme(themeName: string, variables: Record<string, string>): void {
+    const style = document.createElement('style');
+    style.textContent = `
+      [data-theme="${themeName}"] {
+        ${Object.entries(variables).map(([key, value]) => `${key}: ${value};`).join('\n        ')}
+      }
+    `;
+    document.head.appendChild(style);
     
-    // Add theme to available themes if not exists
-    if (!instance.options.themes.includes(name)) {
-      instance.options.themes.push(name);
-    }
-
-    // Apply CSS variables
-    const root = document.documentElement;
-    Object.entries(variables).forEach(([key, value]) => {
-      root.style.setProperty(key, value);
-    });
-
-    if (instance.options.debug) {
-      console.log('WebsiteThemeSwitcher: Custom theme loaded:', name, variables);
+    // Add to available themes
+    if (!this.options.themes.includes(themeName)) {
+      this.options.themes.push(themeName);
     }
   }
 
   /**
-   * Destroy the theme switcher instance
+   * Destroy the instance
    */
-  public static destroy(): void {
-    if (WebsiteThemeSwitcher.instance) {
-      WebsiteThemeSwitcher.instance.cleanup();
-      WebsiteThemeSwitcher.instance = undefined as any;
-    }
-  }
-
-  /**
-   * Cleanup resources
-   */
-  private cleanup(): void {
-    this.switchers.clear();
-    // Remove event listeners
-    document.removeEventListener('click', this.handleClick.bind(this));
-    document.removeEventListener('change', this.handleChange.bind(this));
-    
-    if (this.options.enableTouchGestures) {
-      document.removeEventListener('touchstart', this.handleTouchStart.bind(this));
-      document.removeEventListener('touchend', this.handleTouchEnd.bind(this));
-    }
+  public destroy(): void {
+    WebsiteThemeSwitcher.instance = undefined as any;
   }
 }
