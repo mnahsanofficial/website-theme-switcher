@@ -356,10 +356,9 @@ MIT License - see [LICENSE](./LICENSE) file for details.
 
 ## 📞 Support
 
-- 📧 Email: info@triotrix.com
 - 🐛 Issues: [GitHub Issues](https://github.com/mnahsanofficial/website-theme-switcher/issues)
 - 📖 Documentation: [GitHub Repository](https://github.com/mnahsanofficial/website-theme-switcher)
-- 💬 LinkedIn: [Triotrix Tech Solutions](https://www.linkedin.com/company/triotrix-tech-solutions/)
+- 💼 Company: [Triotrix Tech Solutions](https://www.linkedin.com/company/triotrix-tech-solutions/)
 
 ## 👨‍💻 Creator
 
@@ -368,7 +367,7 @@ MIT License - see [LICENSE](./LICENSE) file for details.
 - 🏢 **Triotrix Tech Solutions**
 - 🔗 [LinkedIn Profile](https://www.linkedin.com/in/mn-ahsan/)
 - 🌐 [Portfolio](https://my-portfolio-mnahsanofficials-projects.vercel.app/)
-- 📧 [Email](mailto:info@triotrix.com)
+- 💼 [Company LinkedIn](https://www.linkedin.com/company/triotrix-tech-solutions/)
 
 ---
 

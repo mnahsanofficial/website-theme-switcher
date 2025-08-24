@@ -53,12 +53,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/triotrix-tech-solutions/website-theme-switcher.git"
+    "url": "https://github.com/mnahsanofficial/website-theme-switcher.git"
   },
   "bugs": {
-    "url": "https://github.com/triotrix-tech-solutions/website-theme-switcher/issues"
+    "url": "https://github.com/mnahsanofficial/website-theme-switcher/issues"
   },
-  "homepage": "https://github.com/triotrix-tech-solutions/website-theme-switcher#readme",
+  "homepage": "https://github.com/mnahsanofficial/website-theme-switcher#readme",
   "engines": {
     "node": ">=14.0.0"
   },
@@ -88,8 +88,5 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ],
-  "dependencies": {
-    "website-theme-switcher": "^1.2.0"
-  }
+  ]
 }
