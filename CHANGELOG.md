@@ -21,44 +21,101 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Memory leak in event listeners
 - Theme persistence issues in private browsing mode
 
-## [1.2.0] - 2024-01-15
+## [1.2.3] - 2025-08-24
 
 ### Added
-- **BREAKING**: New `WebsiteThemeSwitcher` class-based API
-- Support for multiple theme switching strategies
-- Enhanced Tailwind CSS integration with `dark:` class support
-- Bootstrap CSS variable compatibility
-- System preference detection and automatic switching
-- Custom transition duration configuration
-- Event callbacks for theme changes
-- TypeScript definitions
-- **NEW**: Immediate localStorage persistence - theme is saved instantly when changed
-- **NEW**: Enhanced touch gestures for mobile devices
-- **NEW**: Dynamic theme loading capabilities
+- **Working Theme Switcher Demo**: Added `simple-working-demo.html` with self-contained, fully functional theme switcher
+- **Improved Toggle Functionality**: Enhanced `data-toggle-theme` attribute detection and theme switching
+- **Self-Contained Demo**: Created demo that works without external dependencies
 
 ### Changed
-- **BREAKING**: Renamed package from `theme-switcher` to `website-theme-switcher`
-- **BREAKING**: Changed initialization method from `init()` to `WebsiteThemeSwitcher.init()`
-- Improved CSS variable handling
-- Better localStorage management with immediate persistence
-- Enhanced error handling and validation
-- **IMPROVED**: localStorage saves theme preference immediately upon change
-- **IMPROVED**: Theme restoration on page reload is now instant
+- **Updated WebsiteThemeSwitcher.ts**: Improved toggle button detection and theme switching logic
+- **Enhanced README.md**: Added reference to working demo and simplified usage instructions
+- **Removed Non-Working Files**: Cleaned up demo folder to only include working examples
 
-### Deprecated
-- Old `init()` function (will be removed in v2.0.0)
-- `setTheme()` without options parameter
+### Fixed
+- **Toggle Button Functionality**: Fixed issue where toggle buttons were not switching themes
+- **Theme Switching**: Resolved problem with theme not changing when toggle button was clicked
+- **Demo Reliability**: Ensured all demo files actually work as expected
 
-### Removed
-- jQuery dependency
-- Legacy browser support (IE < 11)
+### Technical Details
+- **Package Size**: 16.6 kB (compressed), 74.7 kB (unpacked)
+- **Build Status**: Successfully builds with TypeScript warnings (non-blocking)
+- **Demo Status**: ✅ Fully functional theme switcher with working toggle button
 
-### localStorage Features
-- **Immediate Persistence**: Theme preference is saved to localStorage instantly when changed
-- **Automatic Restoration**: Theme is automatically restored from localStorage on page reload
-- **Fallback System**: Gracefully falls back to system preference if no localStorage value exists
-- **Error Handling**: Robust error handling for localStorage access issues
-- **Custom Storage Keys**: Configurable localStorage key names for different applications
+## [1.2.2] - 2025-08-24
+
+### Fixed
+- **Repository URLs**: Corrected package.json repository URLs to point to correct GitHub repository
+- **Contact Information**: Updated README.md to show only company LinkedIn, removed email
+- **Circular Dependency**: Removed circular dependency from package.json
+
+### Changed
+- **Package Metadata**: Fixed repository, bugs, and homepage URLs
+- **Documentation**: Updated contact section in README.md
+
+## [1.2.1] - 2025-08-24
+
+### Added
+- **GitHub Repository**: Added link to [GitHub repository](https://github.com/mnahsanofficial/website-theme-switcher)
+- **Creator Information**: Added link to [Muhammad Nazmul Ahsan's LinkedIn](https://www.linkedin.com/in/mn-ahsan/)
+- **Company Information**: Added link to [Triotrix Tech Solutions LinkedIn](https://www.linkedin.com/company/triotrix-tech-solutions/)
+- **Live Demo**: Added link to [live demo](https://my-portfolio-mnahsanofficials-projects.vercel.app/)
+- **Version Comparison Table**: Added comprehensive feature comparison table in README.md
+
+### Changed
+- **README.md**: Updated with creator, company, and demo information
+- **CHANGELOG.md**: Updated GitHub releases link
+
+## [1.2.0] - 2025-08-24
+
+### Added
+- **localStorage Persistence**: Theme preferences are now automatically saved and restored
+- **System Preference Detection**: Automatically detects user's system theme preference
+- **Enhanced Configuration**: Added more options for customization
+- **Touch Gesture Support**: Added swipe gestures for mobile devices
+- **Active Class Support**: Added support for active state styling
+- **Custom Storage Keys**: Support for multiple theme switchers with different storage keys
+
+### Changed
+- **Default Storage Key**: Changed from `website-theme` to `theme` for better compatibility
+- **Theme Detection**: Improved theme detection and switching logic
+- **Event Handling**: Enhanced event listener setup and management
+
+### Technical Details
+- **localStorage Implementation**: Uses browser's localStorage API for persistent theme storage
+- **Browser Compatibility**: Works in all modern browsers that support localStorage
+- **Storage Format**: Stores theme as simple string value (e.g., "dark", "light")
+- **Fallback Handling**: Gracefully handles localStorage errors and falls back to default theme
+
+## [1.1.0] - 2025-08-24
+
+### Added
+- **TypeScript Support**: Full TypeScript implementation with type definitions
+- **Multiple Build Formats**: Support for CommonJS, ES Modules, and UMD
+- **Enhanced API**: Added more methods for theme manipulation
+- **Custom Theme Support**: Ability to load custom themes dynamically
+- **Performance Optimizations**: Improved theme switching performance
+
+### Changed
+- **Build System**: Migrated from basic bundling to Rollup with multiple output formats
+- **Code Structure**: Refactored for better maintainability and extensibility
+- **API Design**: Improved method signatures and error handling
+
+## [1.0.0] - 2025-08-24
+
+### Added
+- **Core Theme Switching**: Basic light/dark theme switching functionality
+- **HTML Attribute Support**: Support for `data-theme` attributes
+- **Framework Agnostic**: Works with React, Vue, Angular, and vanilla JavaScript
+- **Tailwind CSS Integration**: Seamless integration with Tailwind CSS
+- **Bootstrap CSS Integration**: Compatible with Bootstrap CSS framework
+- **Basic Configuration**: Simple configuration options for theme switching
+
+### Technical Details
+- **Package Size**: Optimized bundle size for production use
+- **Browser Support**: Compatible with all modern browsers
+- **Performance**: Lightweight implementation with minimal overhead
 
 ## [1.1.0] - 2023-11-20
 
