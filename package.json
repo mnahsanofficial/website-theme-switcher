@@ -1,6 +1,6 @@
 {
   "name": "website-theme-switcher",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "A lightweight, framework-agnostic JavaScript library for seamless theme switching between light and dark modes",
   "type": "module",
   "main": "dist/index.js",
