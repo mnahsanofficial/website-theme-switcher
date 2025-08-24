@@ -21,6 +21,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Memory leak in event listeners
 - Theme persistence issues in private browsing mode
 
+## [1.2.4] - 2025-08-24
+
+### Changed
+- **Enhanced README.md**: Completely restructured and updated with latest features and working demo
+- **Improved Documentation**: Better organization, clearer examples, and updated version comparison table
+- **Simplified Quick Start**: Streamlined 5-minute setup guide with working examples
+- **Updated Features**: Highlighted working toggle button and self-contained demo
+- **Better Examples**: Cleaner React, Vue, and Angular integration examples
+
+### Added
+- **What's New Section**: Added dedicated section highlighting v1.2.3 improvements
+- **Demo Section**: Clear documentation of working demo files
+- **Performance Metrics**: Updated package size information (17.0 kB compressed, 75.7 kB unpacked)
+- **Enhanced Badges**: Updated npm badges for better visibility
+
+### Technical Details
+- **Package Size**: 17.0 kB (compressed), 75.7 kB (unpacked)
+- **Build Status**: Successfully builds with TypeScript warnings (non-blocking)
+- **Documentation**: Comprehensive README with working examples
+
 ## [1.2.3] - 2025-08-24
 
 ### Added
@@ -106,152 +126,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Core Theme Switching**: Basic light/dark theme switching functionality
-- **HTML Attribute Support**: Support for `data-theme` attributes
-- **Framework Agnostic**: Works with React, Vue, Angular, and vanilla JavaScript
-- **Tailwind CSS Integration**: Seamless integration with Tailwind CSS
-- **Bootstrap CSS Integration**: Compatible with Bootstrap CSS framework
-- **Basic Configuration**: Simple configuration options for theme switching
-
-### Technical Details
-- **Package Size**: Optimized bundle size for production use
-- **Browser Support**: Compatible with all modern browsers
-- **Performance**: Lightweight implementation with minimal overhead
-
-## [1.1.0] - 2023-11-20
-
-### Added
-- Support for custom CSS variable prefixes
-- Enhanced mobile responsiveness
-- Better touch gesture support
-- Improved accessibility features
-- **NEW**: localStorage persistence for theme preferences
-
-### Changed
-- Optimized bundle size (reduced by 15%)
-- Enhanced performance for theme switching
-- Better error handling for invalid themes
-- **IMPROVED**: localStorage integration for theme persistence
-
-### Fixed
-- Theme flickering on page load
-- CSS variable conflicts with existing styles
-- Mobile touch event handling issues
-- **FIXED**: Theme persistence across browser sessions
-
-## [1.0.0] - 2023-09-10
-
-### Added
-- Initial release of website-theme-switcher
-- Light and dark theme support
-- Automatic theme persistence in localStorage
-- Multiple switcher types (button, select, toggle)
-- Framework-agnostic design
-- Tailwind CSS integration
-- Bootstrap CSS compatibility
-- Touch-optimized controls
-- Smooth theme transitions
-- Zero dependencies
-- TypeScript support
-- Comprehensive documentation
-
-### Features
-- **Theme Switchers**: Button, select dropdown, toggle switch
-- **CSS Integration**: Works with CSS variables, Tailwind, Bootstrap
-- **Persistence**: Automatic theme saving and restoration via localStorage
-- **Performance**: Lightweight and fast theme switching
-- **Accessibility**: ARIA support and keyboard navigation
-- **Mobile**: Touch-friendly controls and responsive design
-
-## [0.9.0] - 2023-08-15
-
-### Added
-- Beta release for testing
-- Core theme switching functionality
-- Basic CSS variable support
-- Simple HTML attribute-based switching
-
-### Known Issues
-- Limited browser support
-- No TypeScript definitions
-- Basic error handling
-- No localStorage persistence
-
----
-
-## Migration Guide
-
-### From v1.1.0 to v1.2.0
-
-The main breaking change is the new class-based API:
-
-```javascript
-// Old way (deprecated)
-import { init } from 'website-theme-switcher';
-init();
-
-// New way
-import { WebsiteThemeSwitcher } from 'website-theme-switcher';
-WebsiteThemeSwitcher.init();
-```
-
-### From v0.9.0 to v1.0.0
-
-Complete rewrite with new API:
-
-```javascript
-// Old beta API (no longer supported)
-themeSwitcher.init();
-
-// New stable API
-WebsiteThemeSwitcher.init();
-```
-
-## Version Support
-
-| Version | Status | Node.js | Browser Support | localStorage |
-|---------|--------|---------|-----------------|--------------|
-| 1.2.x   | ✅ Current | 14+ | Modern browsers | ✅ Immediate |
-| 1.1.x   | 🔄 Maintenance | 14+ | Modern browsers | ✅ Immediate |
-| 1.0.x   | 🔄 Maintenance | 12+ | Modern browsers | ✅ Immediate |
-| 0.9.x   | ❌ Deprecated | 12+ | Limited support | ❌ None |
-
-## Release Schedule
-
-- **Patch releases** (1.2.x): Bug fixes and minor improvements
-- **Minor releases** (1.x.0): New features, backward compatible
-- **Major releases** (x.0.0): Breaking changes, major rewrites
-
-## localStorage Implementation Details
-
-### How It Works
-1. **Immediate Save**: When a theme is changed, it's instantly saved to localStorage
-2. **Automatic Restore**: On page load, the saved theme is automatically restored
-3. **Fallback Chain**: localStorage → System Preference → Default Theme
-4. **Error Handling**: Gracefully handles localStorage access issues
-
-### Configuration
-```javascript
-WebsiteThemeSwitcher.init({
-  storageKey: 'my-app-theme',        // Custom localStorage key
-  defaultTheme: 'light',             // Fallback theme
-  enableSystemPreference: true,      // Use OS preference as fallback
-  onThemeChange: (theme) => {        // Callback when theme changes
-    console.log('Theme saved to localStorage:', theme);
-  }
-});
-```
-
-### Browser Compatibility
-- **Chrome**: Full localStorage support
-- **Firefox**: Full localStorage support
-- **Safari**: Full localStorage support
-- **Edge**: Full localStorage support
-- **IE 11**: Limited support (with polyfills)
-
-## Contributing
-
-To contribute to the changelog, please follow the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format and submit a pull request.
-
----
-
-For detailed information about each release, visit our [GitHub releases page](https://github.com/mnahsanofficial/website-theme-switcher/releases).
+- **HTML Attribute Support**: Support for `data-theme`
