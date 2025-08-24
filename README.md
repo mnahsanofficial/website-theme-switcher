@@ -1,52 +1,30 @@
 # 🌓 Website Theme Switcher
 
-A lightweight, framework-agnostic JavaScript library for seamless theme switching between light and dark modes. Perfect for any web project that needs elegant theme management with automatic persistence and smooth transitions.
+A lightweight, framework-agnostic theme switcher that works seamlessly with Tailwind CSS, Bootstrap, or any CSS framework. Switch between light and dark themes with a simple toggle button.
 
-[![npm version](https://badgen.net/npm/v/website-theme-switcher)](https://www.npmjs.com/package/website-theme-switcher)
-[![bundle size](https://badgen.net/bundlephobia/minzip/website-theme-switcher)](https://bundlephobia.com/result?p=website-theme-switcher)
-[![downloads](https://badgen.net/npm/dt/website-theme-switcher)](https://www.npmjs.com/package/website-theme-switcher)
-[![license](https://badgen.net/npm/license/website-theme-switcher)](https://github.com/mnahsanofficial/website-theme-switcher)
-[![GitHub stars](https://badgen.net/github/stars/mnahsanofficial/website-theme-switcher)](https://github.com/mnahsanofficial/website-theme-switcher)
+[![npm version](https://img.shields.io/npm/v/website-theme-switcher.svg)](https://www.npmjs.com/package/website-theme-switcher)
+[![npm downloads](https://img.shields.io/npm/dm/website-theme-switcher.svg)](https://www.npmjs.com/package/website-theme-switcher)
+[![License](https://img.shields.io/npm/l/website-theme-switcher.svg)](https://github.com/mnahsanofficial/website-theme-switcher/blob/main/LICENSE)
 
 ## ✨ Features
 
-- 🌓 **Light & Dark Themes**: Built-in light and dark theme support
-- 🎨 **Framework Agnostic**: Works with React, Vue, Angular, Svelte, and vanilla JavaScript
-- 💾 **Automatic Persistence**: Remembers user preference in localStorage
-- 🚀 **Zero Dependencies**: Lightweight and fast
-- 🎯 **Tailwind CSS Ready**: Seamless integration with Tailwind CSS
-- 🎨 **Bootstrap Compatible**: Works with Bootstrap CSS variables
-- 🔧 **Customizable**: Easy to extend with custom themes
-- 📱 **Mobile Friendly**: Touch-optimized theme switchers
-- ⚡ **Performance**: Minimal impact on page load and performance
+- **🎯 Simple Toggle Button** - One button to switch between light and dark themes
+- **🚀 Framework Agnostic** - Works with React, Vue, Angular, or vanilla JavaScript
+- **🎨 CSS Framework Compatible** - Integrates with Tailwind CSS, Bootstrap, or custom CSS
+- **💾 Automatic Persistence** - Saves theme preference to localStorage
+- **📱 Mobile Friendly** - Touch gestures and responsive design
+- **⚡ Lightweight** - Only 16.6 kB minified
+- **🔧 Easy to Use** - Simple HTML attributes, no complex setup
 
-## 🚀 Quick Start
+## 🎯 Quick Start (5 minutes)
 
-### CDN (Recommended for quick testing)
-
-```html
-<script src="https://unpkg.com/website-theme-switcher@latest/dist/index.js"></script>
-<script>
-  // Initialize theme switcher
-  WebsiteThemeSwitcher.init();
-</script>
-```
-
-### NPM Installation
+### 1. Install the Package
 
 ```bash
 npm install website-theme-switcher
-# or
-yarn add website-theme-switcher
-# or
-pnpm add website-theme-switcher
 ```
 
-## 🎯 Simple Theme Toggle (5 minutes)
-
-Add a toggle button to your navbar that switches between light and dark themes **without changing your website design**.
-
-### 1. Add Toggle Button to Your Navbar
+### 2. Add Toggle Button to Your Navbar
 
 ```html
 <button class="theme-toggle" data-toggle-theme="dark,light">
@@ -54,7 +32,7 @@ Add a toggle button to your navbar that switches between light and dark themes *
 </button>
 ```
 
-### 2. Add CSS Variables
+### 3. Add CSS Variables
 
 ```css
 :root {
@@ -70,7 +48,7 @@ Add a toggle button to your navbar that switches between light and dark themes *
 }
 ```
 
-### 3. Replace Hardcoded Colors
+### 4. Replace Hardcoded Colors
 
 ```css
 body {
@@ -79,7 +57,7 @@ body {
 }
 ```
 
-### 4. Initialize Theme Switcher
+### 5. Initialize Theme Switcher
 
 ```html
 <script src="https://unpkg.com/website-theme-switcher@latest/dist/index.js"></script>
@@ -90,7 +68,7 @@ body {
 
 ### 🧪 Test It
 
-Open `demo/package-demo.html` in your browser to see the working toggle button!
+**Open `demo/simple-working-demo.html` in your browser to see the working toggle button!**
 
 ## 🎨 HTML Attributes
 
@@ -125,133 +103,11 @@ The package automatically detects these HTML attributes:
 <button data-set-theme="dark" data-act-class="active">Dark</button>
 ```
 
-## 🎨 Tailwind CSS Integration
-
-### 1. Configure Tailwind
-
-```javascript
-// tailwind.config.js
-module.exports = {
-  darkMode: 'class', // or 'media' for system preference
-  theme: {
-    extend: {
-      colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-      }
-    }
-  }
-}
-```
-
-### 2. CSS Variables
-
-```css
-:root {
-  --color-primary: #3b82f6;
-  --color-secondary: #64748b;
-}
-
-.dark {
-  --color-primary: #60a5fa;
-  --color-secondary: #94a3b8;
-}
-```
-
-### 3. HTML Structure
-
-```html
-<html class="light" data-theme="light">
-  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-    <button data-toggle-theme="dark,light">
-      🌓 Toggle
-    </button>
-  </body>
-</html>
-```
-
-## 🎨 Bootstrap CSS Integration
-
-### 1. CSS Variables
-
-```css
-:root {
-  --bs-body-bg: #ffffff;
-  --bs-body-color: #212529;
-  --bs-primary: #0d6efd;
-}
-
-[data-theme="dark"] {
-  --bs-body-bg: #212529;
-  --bs-body-color: #f8f9fa;
-  --bs-primary: #6ea8fe;
-}
-```
-
-### 2. HTML Usage
-
-```html
-<body class="bg-body text-body">
-  <div class="container">
-    <button class="btn btn-primary" data-toggle-theme="dark,light">
-      🌓 Switch Theme
-    </button>
-  </div>
-</body>
-```
-
-## 🔧 Advanced Configuration
-
-### Custom Options
-
-```javascript
-WebsiteThemeSwitcher.init({
-  // Default theme when no preference is saved
-  defaultTheme: 'light',
-  
-  // Custom localStorage key
-  storageKey: 'app-theme',
-  
-  // Enable system preference detection
-  enableSystemPreference: true,
-  
-  // Transition duration in milliseconds
-  transitionDuration: 300,
-  
-  // Custom theme names
-  themes: ['light', 'dark', 'custom'],
-  
-  // Callback when theme changes
-  onThemeChange: (theme) => {
-    console.log('Theme changed to:', theme);
-  }
-});
-```
-
-### API Methods
-
-```javascript
-// Get current theme
-const currentTheme = WebsiteThemeSwitcher.getInstance().getCurrentTheme();
-
-// Set theme programmatically
-WebsiteThemeSwitcher.getInstance().setTheme('dark');
-
-// Toggle between themes
-WebsiteThemeSwitcher.getInstance().toggleTheme(['light', 'dark']);
-
-// Check if dark mode is active
-const isDark = WebsiteThemeSwitcher.getInstance().isDarkMode();
-
-// Get system preference
-const systemPrefersDark = WebsiteThemeSwitcher.getSystemPreference();
-```
-
-## 🌐 Framework Examples
+## 🚀 Framework Examples
 
 ### React
 ```jsx
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { WebsiteThemeSwitcher } from 'website-theme-switcher';
 
 function App() {
@@ -260,11 +116,9 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <button data-toggle-theme="dark,light">
-        🌓 Toggle Theme
-      </button>
-    </div>
+    <nav>
+      <button data-toggle-theme="dark,light">🌓 Toggle</button>
+    </nav>
   );
 }
 ```
@@ -272,9 +126,9 @@ function App() {
 ### Vue 3
 ```vue
 <template>
-  <button data-toggle-theme="dark,light">
-    🌓 Toggle Theme
-  </button>
+  <nav>
+    <button data-toggle-theme="dark,light">🌓 Toggle</button>
+  </nav>
 </template>
 
 <script setup>
@@ -293,119 +147,182 @@ import { Component, OnInit } from '@angular/core';
 import { WebsiteThemeSwitcher } from 'website-theme-switcher';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-navbar',
   template: `
-    <button data-toggle-theme="dark,light">
-      🌓 Toggle Theme
-    </button>
+    <nav>
+      <button data-toggle-theme="dark,light">🌓 Toggle</button>
+    </nav>
   `
 })
-export class AppComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   ngOnInit() {
     WebsiteThemeSwitcher.init();
   }
 }
 ```
 
-## 🎨 Custom Themes
-
-### Adding Custom Themes
-
-```css
-[data-theme="sepia"] {
-  --bg-primary: #faf8f3;
-  --text-primary: #5c4b37;
-  --accent-color: #d97706;
-}
-```
-
-```html
-<button data-set-theme="sepia">🍂 Sepia</button>
-```
-
-### Dynamic Theme Loading
+## ⚙️ Configuration
 
 ```javascript
-// Load theme dynamically
-WebsiteThemeSwitcher.getInstance().loadTheme('custom-theme', {
-  '--bg-primary': '#1e293b',
-  '--text-primary': '#f1f5f9'
+WebsiteThemeSwitcher.init({
+  defaultTheme: 'light',           // Default theme
+  storageKey: 'theme',             // localStorage key
+  enableSystemPreference: false,   // Use system preference
+  transitionDuration: 300,         // CSS transition duration
+  themes: ['light', 'dark'],       // Available themes
+  onThemeChange: (theme) => {},    // Theme change callback
+  debug: false,                    // Enable debug logging
+  enableTouchGestures: false,      // Enable touch gestures
+  touchThreshold: 50               // Touch gesture threshold
 });
 ```
 
-## 📊 Version Comparison Table
+## 🎨 Custom Themes
 
-| Feature | v1.2.2 (Current) | v1.1.0 | v1.0.0 | v0.9.0 |
-|---------|------------------|---------|---------|---------|
-| **Bundle Size** | ~5.1KB | ~5.8KB | ~6.2KB | ~7.1KB |
-| **TypeScript** | ✅ Full Support | ✅ Full Support | ✅ Full Support | ❌ None |
-| **ES Modules** | ✅ ESM + CJS + UMD | ✅ ESM + CJS | ✅ ESM + CJS | ❌ CJS Only |
-| **Touch Gestures** | ✅ Mobile Swipe | ✅ Basic Touch | ❌ None | ❌ None |
-| **System Preference** | ✅ Auto Detection | ✅ Auto Detection | ✅ Auto Detection | ❌ None |
-| **Custom Themes** | ✅ Dynamic Loading | ✅ Static Only | ✅ Static Only | ❌ None |
-| **localStorage** | ✅ Immediate Save | ✅ Immediate Save | ✅ Immediate Save | ❌ Delayed |
-| **Tailwind CSS** | ✅ Full Integration | ✅ Basic Support | ✅ Basic Support | ❌ None |
-| **Bootstrap** | ✅ CSS Variables | ✅ CSS Variables | ✅ CSS Variables | ❌ None |
-| **Framework Support** | ✅ All Major | ✅ All Major | ✅ All Major | ❌ Limited |
-| **Performance** | ⚡ Optimized | ⚡ Good | ⚡ Good | ⚡ Basic |
-| **Browser Support** | 🌐 Modern + IE11 | 🌐 Modern + IE11 | 🌐 Modern + IE11 | 🌐 Limited |
+### Load Custom Theme
+```javascript
+const themeSwitcher = WebsiteThemeSwitcher.getInstance();
+themeSwitcher.loadTheme('custom', {
+  '--bg-color': '#1a1a2e',
+  '--text-color': '#ffffff',
+  '--accent-color': '#0f3460'
+});
+```
 
-## 🚀 Performance
-
-- **Bundle Size**: < 5KB minified + gzipped
-- **Zero Dependencies**: No external libraries required
-- **Lazy Loading**: Themes load only when needed
-- **Efficient DOM**: Minimal DOM manipulation
-- **Memory Optimized**: Clean event handling
-
-## 🔒 Browser Support
-
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
-- IE 11 (with polyfills)
+### Use Custom Theme
+```html
+<button data-set-theme="custom">🎨 Custom</button>
+```
 
 ## 📱 Mobile Support
 
-- Touch-optimized controls
-- Responsive design
-- Gesture support
-- Mobile-first approach
+### Touch Gestures
+```javascript
+WebsiteThemeSwitcher.init({
+  enableTouchGestures: true,
+  touchThreshold: 50
+});
+```
 
-## 🧪 Live Demo
+- **Swipe Right**: Previous theme
+- **Swipe Left**: Next theme
 
-**Try it out live**: [https://my-portfolio-mnahsanofficials-projects.vercel.app/](https://my-portfolio-mnahsanofficials-projects.vercel.app/)
+## 🔧 API Methods
+
+### Get Instance
+```javascript
+const themeSwitcher = WebsiteThemeSwitcher.getInstance();
+```
+
+### Set Theme
+```javascript
+themeSwitcher.setTheme('dark');
+```
+
+### Toggle Theme
+```javascript
+themeSwitcher.toggleTheme(['light', 'dark']);
+```
+
+### Get Current Theme
+```javascript
+const currentTheme = themeSwitcher.getCurrentTheme();
+```
+
+### Check Dark Mode
+```javascript
+const isDark = themeSwitcher.isDarkMode();
+```
+
+### Remove Theme
+```javascript
+themeSwitcher.removeTheme();
+```
+
+## 📊 Version Comparison
+
+| Feature | v1.0.0 | v1.1.0 | v1.2.0 | v1.2.3 |
+|---------|--------|---------|---------|---------|
+| Basic Theme Switching | ✅ | ✅ | ✅ | ✅ |
+| TypeScript Support | ❌ | ✅ | ✅ | ✅ |
+| Multiple Build Formats | ❌ | ✅ | ✅ | ✅ |
+| localStorage Persistence | ❌ | ❌ | ✅ | ✅ |
+| System Preference Detection | ❌ | ❌ | ✅ | ✅ |
+| Touch Gestures | ❌ | ❌ | ✅ | ✅ |
+| **Working Demo** | ❌ | ❌ | ❌ | ✅ |
+| **Toggle Button Fix** | ❌ | ❌ | ❌ | ✅ |
+| **Self-Contained Demo** | ❌ | ❌ | ❌ | ✅ |
+
+## 🧪 Testing
+
+### Run Tests
+```bash
+npm test
+```
+
+### Build Package
+```bash
+npm run build
+```
+
+### Check Bundle Size
+```bash
+npm run size
+```
+
+## 📦 Installation
+
+### npm
+```bash
+npm install website-theme-switcher
+```
+
+### CDN
+```html
+<script src="https://unpkg.com/website-theme-switcher@latest/dist/index.js"></script>
+```
+
+### Download
+- [Latest Release](https://github.com/mnahsanofficial/website-theme-switcher/releases)
+- [Source Code](https://github.com/mnahsanofficial/website-theme-switcher)
+
+## 🌟 What's New in v1.2.3
+
+- **✅ Working Theme Switcher Demo** - `simple-working-demo.html` with self-contained, fully functional theme switcher
+- **✅ Improved Toggle Functionality** - Enhanced `data-toggle-theme` attribute detection and theme switching
+- **✅ Self-Contained Demo** - Created demo that works without external dependencies
+- **✅ Fixed Toggle Button** - Resolved issue where toggle buttons were not switching themes
+- **✅ Enhanced Package** - Better toggle button detection and theme switching logic
+
+## 🎯 Demo
+
+**Test the working theme switcher:**
+- **Local Demo**: `demo/simple-working-demo.html` (fully functional)
+- **Package Demo**: `demo/package-demo.html` (uses npm package)
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-MIT License - see [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- Built with modern web standards
-- Community-driven development
+- **Creator**: [Muhammad Nazmul Ahsan](https://www.linkedin.com/in/mn-ahsan/)
+- **Company**: [Triotrix Tech Solutions](https://www.linkedin.com/company/triotrix-tech-solutions/)
+- **Live Demo**: [Portfolio](https://my-portfolio-mnahsanofficials-projects.vercel.app/)
 
-## 📞 Support
+## 📞 Contact
 
-- 🐛 Issues: [GitHub Issues](https://github.com/mnahsanofficial/website-theme-switcher/issues)
-- 📖 Documentation: [GitHub Repository](https://github.com/mnahsanofficial/website-theme-switcher)
-- 💼 Company: [Triotrix Tech Solutions](https://www.linkedin.com/company/triotrix-tech-solutions/)
-
-## 👨‍💻 Creator
-
-**Muhammad Nazmul Ahsan**  
-- 🚀 Full Stack Developer
-- 🏢 **Triotrix Tech Solutions**
-- 🔗 [LinkedIn Profile](https://www.linkedin.com/in/mn-ahsan/)
-- 🌐 [Portfolio](https://my-portfolio-mnahsanofficials-projects.vercel.app/)
-- 💼 [Company LinkedIn](https://www.linkedin.com/company/triotrix-tech-solutions/)
+- **GitHub**: [mnahsanofficial/website-theme-switcher](https://github.com/mnahsanofficial/website-theme-switcher)
+- **Company**: [Triotrix Tech Solutions](https://www.linkedin.com/company/triotrix-tech-solutions/)
 
 ---
 
-Made with ❤️ by [**Triotrix Tech Solutions**](https://www.linkedin.com/company/triotrix-tech-solutions/)  
-Empowering Tomorrow's Digital World 🚀
+**⭐ Star this repository if you find it helpful!**
