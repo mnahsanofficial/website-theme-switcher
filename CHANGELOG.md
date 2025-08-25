@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2025-08-25
+
+### Changed
+- **🎬 Demo Video**: Replaced HTML demos with external demo video link to [EINO platform](https://app.eino.world/data-public/shared-link/3gGBZbghKme3dRVKsbSe)
+- **🌐 Live Testing**: Added live portfolio link for real-world testing at [Portfolio](https://my-portfolio-mnahsanofficials-projects.vercel.app/)
+- **📁 Simplified Package**: Removed all HTML demo files for cleaner package structure
+- **🎯 External Demo Links**: Focus on external demo resources instead of embedded HTML
+
+### Removed
+- **HTML Demo Files**: `simple-working-demo.html`, `styles.css`
+- **Local Demo Content**: All embedded demo HTML and CSS files
+- **Demo Directory**: Cleaned up demo folder completely
+
+### Added
+- **🎬 EINO Demo Link**: Direct link to demo video on EINO platform
+- **🌐 Portfolio Link**: Live website for testing theme switcher functionality
+- **📱 Clickable Demo Image**: Placeholder image that links to demo video
+- **🔗 External Resources**: Professional demo and testing links
+
+### Technical Details
+- **Package Size**: 19.3 kB (compressed), 84.1 kB (unpacked)
+- **Build Status**: Successfully builds with TypeScript warnings (non-blocking)
+- **Demo Status**: ✅ External demo video and live portfolio links
+- **Package Cleanliness**: ✅ All HTML demos removed, external links only
+
 ## [1.2.9] - 2025-08-25
 
 ### Fixed
