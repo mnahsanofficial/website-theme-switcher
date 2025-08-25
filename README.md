@@ -10,16 +10,15 @@ A lightweight, framework-agnostic theme switcher that seamlessly integrates with
 ## 🎥 Demo Video
 
 <div align="center">
-  <video width="800" height="450" autoplay loop muted playsinline controls>
-    <source src="src/assets/videos/Screen%20Recording%202025-08-25%20at%207.42.28%20PM.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <p><em>🎬 Auto-playing demo showing theme switching in action</em></p>
+  <a href="https://app.eino.world/data-public/shared-link/3gGBZbghKme3dRVKsbSe" target="_blank">
+    <img src="https://via.placeholder.com/800x450/007bff/ffffff?text=🎬+Click+to+View+Demo+Video" alt="Demo Video" style="border-radius: 10px; cursor: pointer; max-width: 100%; height: auto;">
+  </a>
+  <p><em>🎬 Click the image above to view the demo video</em></p>
   
-  <p><strong>💡 Interactive Demo:</strong> <a href="demo/simple-working-demo.html" target="_blank">Open Simple Working Demo</a></p>
+  <p><strong>💡 Live Test:</strong> <a href="https://my-portfolio-mnahsanofficials-projects.vercel.app/" target="_blank">View Live Portfolio</a></p>
 </div>
 
-> **🎬 Auto-Play Feature:** The demo video automatically plays and loops continuously to showcase the smooth theme switching experience. The video demonstrates the instant theme changes, smooth transitions, and responsive design of the theme switcher.
+> **🎬 Demo Video:** Click the image above to view the theme switcher in action. The demo showcases instant theme switching, smooth transitions, and responsive design.
 
 ## ✨ Features
 
@@ -316,17 +315,19 @@ npm install website-theme-switcher
 
 ## 🚀 Demo
 
-Experience the theme switcher in action with our auto-playing demo video above and interactive demo below! The demos showcase:
+Experience the theme switcher in action with our demo video and live portfolio! The demos showcase:
 
 - **🎬 Instant Theme Switching**: See how themes change instantly between light and dark modes
 - **✨ Smooth Transitions**: Watch the beautiful animations and transitions
 - **💾 localStorage Persistence**: Observe how theme preferences are saved
 - **📱 Responsive Design**: See the theme switcher working across different screen sizes
-- **🔄 Auto-Loop**: The video automatically plays and loops to continuously demonstrate features
+- **🌐 Live Portfolio**: Test the theme switcher on a real website
 
-**🎯 [Simple Working Demo](demo/simple-working-demo.html)** - A minimal, focused demo that demonstrates the core theme switching functionality with a beautiful UI and smooth animations.
+**🎬 [Demo Video](https://app.eino.world/data-public/shared-link/3gGBZbghKme3dRVKsbSe)** - Click to view the theme switcher in action
 
-> **🎬 Video Demo:** The demo video above automatically plays and loops to showcase the theme switcher in action. Watch how smoothly themes transition and how the interface adapts to different themes.
+**🌐 [Live Portfolio](https://my-portfolio-mnahsanofficials-projects.vercel.app/)** - Test the theme switcher on a live website
+
+> **🎬 Demo Experience:** Click the demo video link above to see the theme switcher in action, or visit the live portfolio to test it on a real website.
 
 ## 🤝 Contributing
 
