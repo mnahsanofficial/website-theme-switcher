@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.9] - 2025-08-25
+
+### Fixed
+- **🎬 Video Demo Issue**: Fixed video path with URL encoding and added video controls
+- **🎯 Simple Working Demo**: Restored the working demo HTML file that was accidentally deleted
+- **📁 Demo Styles**: Recreated comprehensive CSS file with responsive design and theme-specific styling
+- **📊 Version Comparison**: Updated table to include all versions from v1.0.0 to v1.2.8
+
+### Added
+- **🎥 Video Controls**: Added video controls for better user experience
+- **🎨 Enhanced Styles**: Comprehensive CSS with responsive design, animations, and theme switching
+- **📱 Responsive Demo**: Mobile-friendly demo with touch gestures and responsive layout
+- **🔄 Demo Link**: Added link to simple working demo in README
+
+### Changed
+- **README.md**: Updated video section with proper video controls and demo links
+- **Demo Section**: Enhanced to reference both video demo and interactive demo
+- **Version Table**: Complete feature comparison across all versions
+- **What's New**: Updated to reflect v1.2.8 features and improvements
+
+### Technical Details
+- **Package Size**: 19.1 kB (compressed), 82.7 kB (unpacked)
+- **Build Status**: Successfully builds with TypeScript warnings (non-blocking)
+- **Video Status**: ✅ Fixed video path and added controls
+- **Demo Status**: ✅ Simple working demo restored with enhanced styles
+
 ## [1.2.8] - 2025-08-25
 
 ### Changed
