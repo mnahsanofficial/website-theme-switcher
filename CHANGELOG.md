@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.8] - 2025-08-25
+
+### Changed
+- **🎬 Video Demo Restored**: Replaced HTML demos with auto-playing video demo
+- **🗑️ HTML Demos Removed**: Cleaned up all HTML demo files for cleaner package
+- **📁 GitHub Pages Removed**: No longer deploying HTML demos to GitHub Pages
+- **🔧 Gitignore Enhanced**: Added comprehensive gitignore for unused files
+
+### Removed
+- **HTML Demo Files**: `demo-video.html`, `simple-working-demo.html`, `package-demo.html`, `index.html`, `styles.css`
+- **GitHub Actions**: Removed automated deployment workflow
+- **GitHub Pages**: No more live demo deployment
+
+### Added
+- **🎥 Video Demo**: Auto-playing video that loops continuously
+- **📋 Enhanced Gitignore**: Added patterns for media files, temporary files, and unused assets
+- **🎬 Cleaner Package**: Simplified package structure without demo HTML files
+
+### Technical Details
+- **Package Size**: 18.4 kB (compressed), 80.8 kB (unpacked)
+- **Build Status**: Successfully builds with TypeScript warnings (non-blocking)
+- **Demo Status**: ✅ Video demo with auto-play and loop
+- **Package Cleanliness**: ✅ Removed all unused demo files
+
 ## [1.2.7] - 2025-08-25
 
 ### Added
