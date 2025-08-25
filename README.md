@@ -7,20 +7,25 @@
 
 A lightweight, framework-agnostic theme switcher that seamlessly integrates with any website to provide smooth light/dark theme switching. Perfect for React, Vue, Angular, Svelte, and vanilla JavaScript projects.
 
-## 🎥 Demo Video
+## 🎥 Live Demos
 
 <div align="center">
-  <video width="800" height="450" autoplay loop muted playsinline>
-    <source src="https://github.com/mnahsanofficial/website-theme-switcher/assets/123456789/demo-video.mp4" type="video/mp4">
-    <source src="https://github.com/mnahsanofficial/website-theme-switcher/assets/123456789/demo-video.webm" type="video/webm">
-    Your browser does not support the video tag.
-  </video>
-  <p><em>🎬 Auto-playing demo showing theme switching in action</em></p>
+  <h3>🎬 Interactive Theme Switcher Demos</h3>
   
-  <p><strong>💡 Interactive Demo:</strong> <a href="demo/demo-video.html" target="_blank">Open Full Demo</a> | <a href="demo/simple-working-demo.html" target="_blank">Simple Demo</a></p>
+  <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 20px 0;">
+    <a href="https://mnahsanofficial.github.io/website-theme-switcher/demo-video.html" target="_blank" style="display: inline-block; padding: 15px 25px; background: linear-gradient(45deg, #007bff, #00d4ff); color: white; text-decoration: none; border-radius: 10px; font-weight: bold; transition: transform 0.3s ease; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);">
+      🎬 Open Full Demo
+    </a>
+    
+    <a href="https://mnahsanofficial.github.io/website-theme-switcher/simple-working-demo.html" target="_blank" style="display: inline-block; padding: 15px 25px; background: linear-gradient(45deg, #28a745, #20c997); color: white; text-decoration: none; border-radius: 10px; font-weight: bold; transition: transform 0.3s ease; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);">
+      🎯 Open Simple Demo
+    </a>
+  </div>
+  
+  <p><em>🚀 Click the buttons above to experience the theme switcher in action!</em></p>
 </div>
 
-> **🎬 Auto-Play Feature:** The demo video automatically plays and loops continuously to showcase the smooth theme switching experience. The video demonstrates the instant theme changes, smooth transitions, and responsive design of the theme switcher.
+> **🎬 Demo Features:** Both demos showcase instant theme switching, smooth transitions, localStorage persistence, and responsive design. The Full Demo includes auto-demo functionality and comprehensive features, while the Simple Demo focuses on core functionality.
 
 ## ✨ Features
 
@@ -312,9 +317,13 @@ npm install website-theme-switcher
 
 ## 🎯 Demo
 
-**Test the working theme switcher:**
-- **Local Demo**: `demo/simple-working-demo.html` (fully functional)
-- **Package Demo**: `demo/package-demo.html` (uses npm package)
+Experience the theme switcher in action with our interactive demos:
+
+- **🎬 [Full Interactive Demo](https://mnahsanofficial.github.io/website-theme-switcher/demo-video.html)** - Comprehensive demo with auto-demo features, smooth animations, and all capabilities
+- **🎯 [Simple Working Demo](https://mnahsanofficial.github.io/website-theme-switcher/simple-working-demo.html)** - Minimal demo focusing on core theme switching functionality
+- **📱 [Demo Navigation](https://mnahsanofficial.github.io/website-theme-switcher/)** - Main demo page with navigation to all demos
+
+> **🌐 Live Deployment:** All demos are deployed on GitHub Pages and accessible online. The demos showcase instant theme switching, localStorage persistence, and responsive design across all devices.
 
 ## 🤝 Contributing
 
