@@ -7,7 +7,7 @@
 
 A lightweight, framework-agnostic theme switcher that seamlessly integrates with any website to provide smooth light/dark theme switching. Perfect for React, Vue, Angular, Svelte, and vanilla JavaScript projects.
 
-## 🎥 Demo Video
+## 🎬 Demo Video
 
 <div align="center">
   <a href="https://app.eino.world/data-public/shared-link/3gGBZbghKme3dRVKsbSe" target="_blank">
@@ -301,8 +301,8 @@ npm install website-theme-switcher
 ```
 
 ### Download
-- [Latest Release](https://github.com/mnahsanofficial/website-theme-switcher/releases)
-- [Source Code](https://github.com/mnahsanofficial/website-theme-switcher)
+- <a href="https://github.com/mnahsanofficial/website-theme-switcher/releases" target="_blank">Latest Release</a>
+- <a href="https://github.com/mnahsanofficial/website-theme-switcher" target="_blank">Source Code</a>
 
 ## 🌟 What's New in v1.2.8
 
@@ -323,9 +323,9 @@ Experience the theme switcher in action with our demo video and live portfolio! 
 - **📱 Responsive Design**: See the theme switcher working across different screen sizes
 - **🌐 Live Portfolio**: Test the theme switcher on a real website
 
-**🎬 [Demo Video](https://app.eino.world/data-public/shared-link/3gGBZbghKme3dRVKsbSe)** - Click to view the theme switcher in action
+**🎬 <a href="https://app.eino.world/data-public/shared-link/3gGBZbghKme3dRVKsbSe" target="_blank">Demo Video</a>** - Click to view the theme switcher in action
 
-**🌐 [Live Portfolio](https://my-portfolio-mnahsanofficials-projects.vercel.app/)** - Test the theme switcher on a live website
+**🌐 <a href="https://my-portfolio-mnahsanofficials-projects.vercel.app/" target="_blank">Live Portfolio</a>** - Test the theme switcher on a live website
 
 > **🎬 Demo Experience:** Click the demo video link above to see the theme switcher in action, or visit the live portfolio to test it on a real website.
 
@@ -343,14 +343,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Creator**: [Muhammad Nazmul Ahsan](https://www.linkedin.com/in/mn-ahsan/)
-- **Company**: [Triotrix Tech Solutions](https://www.linkedin.com/company/triotrix-tech-solutions/)
-- **Live Demo**: [Portfolio](https://my-portfolio-mnahsanofficials-projects.vercel.app/)
+- **Creator**: <a href="https://www.linkedin.com/in/mn-ahsan/" target="_blank">Muhammad Nazmul Ahsan</a>
+- **Company**: <a href="https://www.linkedin.com/company/triotrix-tech-solutions/" target="_blank">Triotrix Tech Solutions</a>
+- **Live Demo**: <a href="https://my-portfolio-mnahsanofficials-projects.vercel.app/" target="_blank">Portfolio</a>
 
 ## 📞 Contact
 
-- **GitHub**: [mnahsanofficial/website-theme-switcher](https://github.com/mnahsanofficial/website-theme-switcher)
-- **Company**: [Triotrix Tech Solutions](https://www.linkedin.com/company/triotrix-tech-solutions/)
+- **GitHub**: <a href="https://github.com/mnahsanofficial/website-theme-switcher" target="_blank">mnahsanofficial/website-theme-switcher</a>
+- **Company**: <a href="https://www.linkedin.com/company/triotrix-tech-solutions/" target="_blank">Triotrix Tech Solutions</a>
 
 ---
 
