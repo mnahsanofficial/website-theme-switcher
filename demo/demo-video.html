@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Theme Switcher - Demo Video</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+        }
+
+        body[data-theme="dark"] {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        body[data-theme="light"] {
+            background: #ffffff;
+            color: #333333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        body[data-theme="dark"] .navbar {
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body[data-theme="light"] .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid #007bff;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle:hover {
+            background: #007bff;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .theme-toggle .icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover .icon {
+            transform: rotate(15deg);
+        }
+
+        .main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #007bff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        body[data-theme="dark"] .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body[data-theme="light"] .feature-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #007bff;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature-description {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .demo-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .demo-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #007bff;
+            color: white;
+        }
+
+        .demo-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .demo-btn.secondary {
+            background: #6c757d;
+        }
+
+        .demo-btn.success {
+            background: #28a745;
+        }
+
+        .status-display {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: monospace;
+            text-align: left;
+        }
+
+        body[data-theme="dark"] .status-display {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body[data-theme="light"] .status-display {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        body[data-theme="dark"] .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body[data-theme="light"] .footer {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <nav class="navbar">
+        <div class="logo">🌓 ThemeSwitcher</div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <span class="icon">☀️</span>
+            <span class="text">Light Mode</span>
+        </button>
+    </nav>
+
+    <main class="main-content">
+        <section class="hero-section fade-in">
+            <h1 class="hero-title">Website Theme Switcher</h1>
+            <p class="hero-subtitle">Seamlessly switch between light and dark themes with a single click</p>
+        </section>
+
+        <section class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Lightning Fast</h3>
+                <p class="feature-description">Instant theme switching with smooth transitions and animations</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🔧</div>
+                <h3 class="feature-title">Framework Agnostic</h3>
+                <p class="feature-description">Works with React, Vue, Angular, Svelte, and vanilla JavaScript</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">💾</div>
+                <h3 class="feature-title">Persistent Storage</h3>
+                <p class="feature-description">Your theme preference is saved and restored automatically</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Mobile Friendly</h3>
+                <p class="feature-description">Touch gestures and responsive design for all devices</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">Customizable</h3>
+                <p class="feature-description">Easy to customize colors, animations, and behavior</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🚀</div>
+                <h3 class="feature-title">Zero Dependencies</h3>
+                <p class="feature-description">Lightweight package with no external dependencies</p>
+            </div>
+        </section>
+
+        <section class="demo-section fade-in">
+            <h2 class="demo-title">Try It Out!</h2>
+            <div class="demo-buttons">
+                <button class="demo-btn" onclick="setTheme('light')">☀️ Light Theme</button>
+                <button class="demo-btn secondary" onclick="setTheme('dark')">🌙 Dark Theme</button>
+                <button class="demo-btn success" onclick="toggleTheme()">🔄 Toggle Theme</button>
+            </div>
+            
+            <div class="status-display">
+                <strong>Current Theme:</strong> <span id="current-theme">light</span><br>
+                <strong>Dark Mode:</strong> <span id="dark-mode">false</span><br>
+                <strong>localStorage:</strong> <span id="localstorage-info">theme=light</span><br>
+                <strong>Theme Changes:</strong> <span id="theme-count">1</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Made with ❤️ by <a href="https://github.com/mnahsanofficial" style="color: #007bff;">Muhammad Nazmul Ahsan</a></p>
+        <p>Part of <a href="https://www.linkedin.com/company/triotrix-tech-solutions/" style="color: #007bff;">Triotrix Tech Solutions</a></p>
+    </footer>
+
+    <script>
+        class ThemeSwitcher {
+            constructor() {
+                this.currentTheme = 'light';
+                this.storageKey = 'demo-theme';
+                this.themeCount = 0;
+                this.init();
+            }
+
+            init() {
+                console.log('🎬 Demo Theme Switcher Initialized');
+                const savedTheme = this.getSavedTheme();
+                if (savedTheme) {
+                    this.setTheme(savedTheme);
+                } else {
+                    this.setTheme('light');
+                }
+                this.updateStatus();
+                this.startAutoDemo();
+            }
+
+            setTheme(theme) {
+                console.log('🎬 Setting theme to:', theme);
+                if (theme === 'dark') {
+                    document.body.setAttribute('data-theme', 'dark');
+                    this.currentTheme = 'dark';
+                    this.updateToggleButton('🌙', 'Dark Mode');
+                } else {
+                    document.body.removeAttribute('data-theme');
+                    this.currentTheme = 'light';
+                    this.updateToggleButton('☀️', 'Light Mode');
+                }
+                this.saveTheme(theme);
+                this.themeCount++;
+                this.updateStatus();
+                this.addFadeInEffect();
+                console.log('🎬 Theme set to:', this.currentTheme);
+            }
+
+            toggleTheme() {
+                console.log('🎬 Toggling theme from:', this.currentTheme);
+                const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+                this.setTheme(newTheme);
+            }
+
+            updateToggleButton(icon, text) {
+                const toggleBtn = document.querySelector('.theme-toggle');
+                if (toggleBtn) {
+                    const iconSpan = toggleBtn.querySelector('.icon');
+                    const textSpan = toggleBtn.querySelector('.text');
+                    if (iconSpan) iconSpan.textContent = icon;
+                    if (textSpan) textSpan.textContent = text;
+                }
+            }
+
+            addFadeInEffect() {
+                const cards = document.querySelectorAll('.feature-card');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('fade-in');
+                    }, index * 100);
+                });
+            }
+
+            getSavedTheme() {
+                try {
+                    return localStorage.getItem(this.storageKey);
+                } catch {
+                    return null;
+                }
+            }
+
+            saveTheme(theme) {
+                try {
+                    localStorage.setItem(this.storageKey, theme);
+                    console.log('🎬 Theme saved to localStorage:', theme);
+                } catch (error) {
+                    console.warn('🎬 Failed to save theme:', error);
+                }
+            }
+
+            updateStatus() {
+                const currentThemeEl = document.getElementById('current-theme');
+                const darkModeEl = document.getElementById('dark-mode');
+                const localStorageEl = document.getElementById('localstorage-info');
+                const themeCountEl = document.getElementById('theme-count');
+                
+                if (currentThemeEl) currentThemeEl.textContent = this.currentTheme;
+                if (darkModeEl) darkModeEl.textContent = this.currentTheme === 'dark' ? 'true' : 'false';
+                if (localStorageEl) localStorageEl.textContent = `theme=${this.currentTheme}`;
+                if (themeCountEl) themeCountEl.textContent = this.themeCount;
+            }
+
+            startAutoDemo() {
+                // Auto-demo every 5 seconds to show the theme switching
+                setInterval(() => {
+                    if (Math.random() > 0.7) { // 30% chance to auto-switch
+                        this.toggleTheme();
+                        console.log('🎬 Auto-demo: Theme toggled automatically');
+                    }
+                }, 5000);
+            }
+
+            getCurrentTheme() {
+                return this.currentTheme;
+            }
+
+            isDarkMode() {
+                return this.currentTheme === 'dark';
+            }
+        }
+
+        // Global functions for demo buttons
+        function setTheme(theme) {
+            console.log('🎬 Global setTheme called with:', theme);
+            if (window.demoThemeSwitcher) {
+                window.demoThemeSwitcher.setTheme(theme);
+            }
+        }
+
+        function toggleTheme() {
+            console.log('🎬 Global toggleTheme called');
+            if (window.demoThemeSwitcher) {
+                window.demoThemeSwitcher.toggleTheme();
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎬 DOM loaded, creating demo theme switcher...');
+            window.demoThemeSwitcher = new ThemeSwitcher();
+            console.log('🎬 Demo theme switcher created:', window.demoThemeSwitcher);
+            
+            // Add some initial animations
+            setTimeout(() => {
+                document.querySelector('.hero-title').classList.add('pulse');
+            }, 1000);
+        });
+
+        // Add smooth scrolling for better demo experience
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

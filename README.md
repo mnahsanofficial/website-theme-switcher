@@ -1,10 +1,26 @@
 # 🌓 Website Theme Switcher
 
-A lightweight, framework-agnostic theme switcher that works seamlessly with Tailwind CSS, Bootstrap, or any CSS framework. Switch between light and dark themes with a simple toggle button.
-
 [![npm version](https://img.shields.io/npm/v/website-theme-switcher.svg)](https://www.npmjs.com/package/website-theme-switcher)
 [![npm downloads](https://img.shields.io/npm/dm/website-theme-switcher.svg)](https://www.npmjs.com/package/website-theme-switcher)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/website-theme-switcher.svg)](https://www.npmjs.com/package/website-theme-switcher)
 [![License](https://img.shields.io/npm/l/website-theme-switcher.svg)](https://github.com/mnahsanofficial/website-theme-switcher/blob/main/LICENSE)
+
+A lightweight, framework-agnostic theme switcher that seamlessly integrates with any website to provide smooth light/dark theme switching. Perfect for React, Vue, Angular, Svelte, and vanilla JavaScript projects.
+
+## 🎥 Demo Video
+
+<div align="center">
+  <video width="800" height="450" autoplay loop muted playsinline>
+    <source src="https://github.com/mnahsanofficial/website-theme-switcher/assets/123456789/demo-video.mp4" type="video/mp4">
+    <source src="https://github.com/mnahsanofficial/website-theme-switcher/assets/123456789/demo-video.webm" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
+  <p><em>🎬 Auto-playing demo showing theme switching in action</em></p>
+  
+  <p><strong>💡 Interactive Demo:</strong> <a href="demo/demo-video.html" target="_blank">Open Full Demo</a> | <a href="demo/simple-working-demo.html" target="_blank">Simple Demo</a></p>
+</div>
+
+> **🎬 Auto-Play Feature:** The demo video automatically plays and loops continuously to showcase the smooth theme switching experience. The video demonstrates the instant theme changes, smooth transitions, and responsive design of the theme switcher.
 
 ## ✨ Features
 
