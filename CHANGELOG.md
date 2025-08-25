@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2025-08-25
+
+### Added
+- **🎬 Demo Video Icon**: Added 🎬 icon before "Demo Video" section header
+- **🆕 New Tab Links**: All external links now open in new tabs for better user experience
+
+### Changed
+- **README.md**: Updated all external links to use `target="_blank"` attribute
+- **Link Behavior**: External links now open in new tabs instead of same tab
+- **User Experience**: Improved navigation by keeping users on the main page
+
+### Updated Links
+- **Demo Video**: Opens EINO platform in new tab
+- **Live Portfolio**: Opens portfolio in new tab
+- **GitHub Links**: All GitHub links open in new tabs
+- **LinkedIn Links**: Creator and company links open in new tabs
+- **Download Links**: Release and source code links open in new tabs
+
+### Technical Details
+- **Package Size**: 19.7 kB (compressed), 85.6 kB (unpacked)
+- **Build Status**: Successfully builds with TypeScript warnings (non-blocking)
+- **Link Status**: ✅ All external links open in new tabs
+- **Icon Status**: ✅ 🎬 icon added to Demo Video section
+
 ## [1.3.0] - 2025-08-25
 
 ### Changed
