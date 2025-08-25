@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.6] - 2025-08-25
+
+### Added
+- **🎥 Auto-Playing Demo Video**: Added demo video section in README that automatically plays and loops
+- **🎬 Enhanced Demo Page**: Created comprehensive `demo-video.html` with interactive theme switching
+- **🔄 Auto-Demo Feature**: Demo automatically toggles themes every 5 seconds to showcase functionality
+- **✨ Interactive Elements**: Added demo buttons, status display, and smooth animations
+- **📱 Responsive Design**: Mobile-friendly demo with touch gestures and responsive layout
+
+### Changed
+- **README.md**: Added demo video section with auto-play, loop, and muted attributes
+- **Demo Experience**: Enhanced demo with feature cards, hero section, and interactive controls
+- **Visual Appeal**: Added smooth transitions, fade-in effects, and hover animations
+
+### Features in Demo
+- **Auto-Theme Switching**: Random theme changes every 5 seconds (30% probability)
+- **Interactive Controls**: Light/Dark theme buttons and toggle functionality
+- **Real-time Status**: Shows current theme, dark mode status, localStorage info, and theme count
+- **Smooth Animations**: Fade-in effects, hover animations, and smooth transitions
+- **Responsive Layout**: Works perfectly on desktop, tablet, and mobile devices
+
+### Technical Details
+- **Package Size**: 17.6 kB (compressed), 77.7 kB (unpacked)
+- **Build Status**: Successfully builds with TypeScript warnings (non-blocking)
+- **Demo Status**: ✅ Fully interactive demo with auto-playing features
+- **Video Support**: MP4 and WebM formats with fallback for unsupported browsers
+
 ## [1.2.5] - 2025-08-24
 
 ### Fixed
