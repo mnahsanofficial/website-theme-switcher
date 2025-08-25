@@ -96,6 +96,25 @@
         .test-instructions ol {
             color: #78350f;
         }
+
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .status.success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #22c55e;
+        }
+
+        .status.error {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
     </style>
 </head>
 <body>
@@ -115,15 +134,15 @@
 
         <div class="theme-info">
             <h3>🎨 Theme Switchers</h3>
-            <button data-theme-switcher="toggle" data-themes="light,dark">
+            <button onclick="toggleTheme()" data-toggle-theme>
                 🌓 Toggle Theme
             </button>
             
-            <button data-theme-switcher="set" data-theme="light">
+            <button onclick="setTheme('light')" data-set-theme="light">
                 ☀️ Light
             </button>
             
-            <button data-theme-switcher="set" data-theme="dark">
+            <button onclick="setTheme('dark')" data-set-theme="dark">
                 🌙 Dark
             </button>
         </div>
@@ -138,7 +157,7 @@
 
         <div class="storage-info">
             <h3>💾 localStorage Status</h3>
-            <p><strong>Storage Key:</strong> <code>website-theme</code></p>
+            <p><strong>Storage Key:</strong> <code>theme</code></p>
             <p><strong>Current Value:</strong> <span id="storageValue">null</span></p>
             <button onclick="checkStorage()">🔍 Check localStorage</button>
             <button onclick="clearStorage()" class="btn-danger">🗑️ Clear localStorage</button>
@@ -163,96 +182,180 @@
             <button onclick="forceTheme('dark')">Force Dark Theme</button>
             <button onclick="simulateSystemChange()">Simulate System Change</button>
         </div>
+
+        <div id="status" class="status" style="display: none;"></div>
     </div>
 
-    <script type="module">
-        import { WebsiteThemeSwitcher } from './dist/index.js';
-
-        // Initialize theme switcher with localStorage enabled
-        WebsiteThemeSwitcher.init({
-            defaultTheme: 'light',
-            storageKey: 'website-theme',
-            enableSystemPreference: true,
-            transitionDuration: 300,
-            debug: true, // Enable debug mode to see localStorage operations
-            onThemeChange: (theme) => {
-                console.log('🌓 Theme changed to:', theme);
-                updateThemeInfo();
-                updateStorageInfo();
+    <script>
+        // Simple theme switcher for testing
+        class SimpleThemeSwitcher {
+            constructor() {
+                this.currentTheme = 'light';
+                this.storageKey = 'theme';
+                this.init();
             }
-        });
 
-        function updateThemeInfo() {
-            const currentTheme = WebsiteThemeSwitcher.getCurrentTheme();
-            const isDark = WebsiteThemeSwitcher.isDarkMode();
-            const systemPrefersDark = WebsiteThemeSwitcher.getSystemPreference();
-            
-            document.getElementById('currentTheme').textContent = currentTheme;
-            document.getElementById('isDarkMode').textContent = isDark;
-            document.getElementById('systemPrefersDark').textContent = systemPrefersDark;
+            init() {
+                console.log('🚀 Initializing SimpleThemeSwitcher...');
+                const savedTheme = this.getSavedTheme();
+                if (savedTheme) {
+                    this.setTheme(savedTheme);
+                } else {
+                    this.setTheme('light');
+                }
+                this.updateStatus();
+                console.log('✅ SimpleThemeSwitcher initialized with theme:', this.currentTheme);
+            }
+
+            setTheme(theme) {
+                console.log('🎨 Setting theme to:', theme);
+                if (theme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    this.currentTheme = 'dark';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    this.currentTheme = 'light';
+                }
+                this.saveTheme(theme);
+                this.updateStatus();
+                this.showStatus(`Theme set to: ${theme}`, 'success');
+                console.log('✅ Theme set to:', this.currentTheme);
+            }
+
+            toggleTheme() {
+                console.log('🔄 Toggling theme from:', this.currentTheme);
+                const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+                this.setTheme(newTheme);
+            }
+
+            getSavedTheme() {
+                try {
+                    return localStorage.getItem(this.storageKey);
+                } catch {
+                    return null;
+                }
+            }
+
+            saveTheme(theme) {
+                try {
+                    localStorage.setItem(this.storageKey, theme);
+                    console.log('💾 Theme saved to localStorage:', theme);
+                } catch (error) {
+                    console.warn('⚠️ Failed to save theme:', error);
+                }
+            }
+
+            updateStatus() {
+                const currentThemeEl = document.getElementById('currentTheme');
+                const darkModeEl = document.getElementById('isDarkMode');
+                const systemPrefersDarkEl = document.getElementById('systemPrefersDark');
+                const storageValueEl = document.getElementById('storageValue');
+                
+                if (currentThemeEl) currentThemeEl.textContent = this.currentTheme;
+                if (darkModeEl) darkModeEl.textContent = this.currentTheme === 'dark' ? 'true' : 'false';
+                if (systemPrefersDarkEl) systemPrefersDarkEl.textContent = this.getSystemPreference();
+                if (storageValueEl) storageValueEl.textContent = this.getSavedTheme() || 'null';
+            }
+
+            getCurrentTheme() {
+                return this.currentTheme;
+            }
+
+            isDarkMode() {
+                return this.currentTheme === 'dark';
+            }
+
+            getSystemPreference() {
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'true' : 'false';
+            }
+
+            showStatus(message, type = 'success') {
+                const statusEl = document.getElementById('status');
+                statusEl.textContent = message;
+                statusEl.className = `status ${type}`;
+                statusEl.style.display = 'block';
+                
+                setTimeout(() => {
+                    statusEl.style.display = 'none';
+                }, 3000);
+            }
         }
 
-        function updateStorageInfo() {
-            const storageValue = localStorage.getItem('website-theme');
-            document.getElementById('storageValue').textContent = storageValue || 'null';
+        // Global functions for buttons
+        let themeSwitcher;
+
+        function toggleTheme() {
+            if (themeSwitcher) {
+                themeSwitcher.toggleTheme();
+            }
         }
 
-        window.checkTheme = function() {
-            updateThemeInfo();
-            updateStorageInfo();
-        };
+        function setTheme(theme) {
+            if (themeSwitcher) {
+                themeSwitcher.setTheme(theme);
+            }
+        }
 
-        window.checkStorage = function() {
-            updateStorageInfo();
-            alert(`localStorage 'website-theme': ${localStorage.getItem('website-theme') || 'null'}`);
-        };
+        function checkTheme() {
+            if (themeSwitcher) {
+                themeSwitcher.updateStatus();
+                themeSwitcher.showStatus('Theme info refreshed!', 'success');
+            }
+        }
 
-        window.clearStorage = function() {
-            localStorage.removeItem('website-theme');
-            updateStorageInfo();
+        function checkStorage() {
+            const storageValue = localStorage.getItem('theme');
+            alert(`localStorage 'theme': ${storageValue || 'null'}`);
+        }
+
+        function clearStorage() {
+            localStorage.removeItem('theme');
+            if (themeSwitcher) {
+                themeSwitcher.updateStatus();
+            }
             alert('localStorage cleared! Refresh the page to see default theme.');
-        };
+        }
 
-        window.showAllStorage = function() {
+        function showAllStorage() {
             const allStorage = {};
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 allStorage[key] = localStorage.getItem(key);
             }
             alert('All localStorage:\n' + JSON.stringify(allStorage, null, 2));
-        };
+        }
 
-        window.forceTheme = function(theme) {
-            WebsiteThemeSwitcher.setTheme(theme);
-        };
+        function forceTheme(theme) {
+            if (themeSwitcher) {
+                themeSwitcher.setTheme(theme);
+            }
+        }
 
-        window.simulateSystemChange = function() {
-            // Simulate system preference change
+        function simulateSystemChange() {
             const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
             if (mediaQuery.matches) {
                 alert('System currently prefers dark mode');
             } else {
                 alert('System currently prefers light mode');
             }
-        };
+        }
 
-        // Initial updates
-        updateThemeInfo();
-        updateStorageInfo();
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🌐 DOM loaded, creating theme switcher...');
+            themeSwitcher = new SimpleThemeSwitcher();
+            console.log('✅ Theme switcher created:', themeSwitcher);
+        });
 
         // Listen for storage changes (useful for testing with multiple tabs)
         window.addEventListener('storage', (e) => {
-            if (e.key === 'website-theme') {
-                console.log('Storage changed:', e.newValue);
-                updateStorageInfo();
+            if (e.key === 'theme') {
+                console.log('💾 Storage changed:', e.newValue);
+                if (themeSwitcher) {
+                    themeSwitcher.updateStatus();
+                }
             }
         });
-
-        // Log initial state
-        console.log('🚀 Website Theme Switcher initialized');
-        console.log('📱 Current theme:', WebsiteThemeSwitcher.getCurrentTheme());
-        console.log('💾 localStorage value:', localStorage.getItem('website-theme'));
-        console.log('🌐 System prefers dark:', WebsiteThemeSwitcher.getSystemPreference());
     </script>
 </body>
 </html>
