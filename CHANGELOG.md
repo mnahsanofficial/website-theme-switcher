@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.7] - 2025-08-25
+
+### Added
+- **🌐 GitHub Pages Deployment**: Automated deployment of all demo files to GitHub Pages
+- **🎬 Live Demo Links**: Updated README with actual deployed demo URLs
+- **📱 Demo Navigation**: Created main demo page with navigation to all demos
+- **🚀 Automated Workflow**: GitHub Actions workflow for continuous deployment
+
+### Changed
+- **README.md**: Replaced video placeholder with live demo buttons and GitHub Pages links
+- **Demo Section**: Updated to show deployed demo URLs instead of local file paths
+- **Demo Experience**: Enhanced demo navigation with beautiful UI and descriptions
+
+### Deployed Demos
+- **🎬 Full Interactive Demo**: https://mnahsanofficial.github.io/website-theme-switcher/demo-video.html
+- **🎯 Simple Working Demo**: https://mnahsanofficial.github.io/website-theme-switcher/simple-working-demo.html
+- **📱 Demo Navigation**: https://mnahsanofficial.github.io/website-theme-switcher/
+
+### Technical Details
+- **Package Size**: 18.4 kB (compressed), 80.4 kB (unpacked)
+- **Build Status**: Successfully builds with TypeScript warnings (non-blocking)
+- **Deployment**: ✅ GitHub Pages with automated workflow
+- **Demo Status**: ✅ All demos live and accessible online
+
 ## [1.2.6] - 2025-08-25
 
 ### Added
