@@ -10,11 +10,13 @@ A lightweight, framework-agnostic theme switcher that seamlessly integrates with
 ## 🎥 Demo Video
 
 <div align="center">
-  <video width="800" height="450" autoplay loop muted playsinline>
-    <source src="src/assets/videos/Screen Recording 2025-08-25 at 7.42.28 PM.mp4" type="video/mp4">
+  <video width="800" height="450" autoplay loop muted playsinline controls>
+    <source src="src/assets/videos/Screen%20Recording%202025-08-25%20at%207.42.28%20PM.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
   <p><em>🎬 Auto-playing demo showing theme switching in action</em></p>
+  
+  <p><strong>💡 Interactive Demo:</strong> <a href="demo/simple-working-demo.html" target="_blank">Open Simple Working Demo</a></p>
 </div>
 
 > **🎬 Auto-Play Feature:** The demo video automatically plays and loops continuously to showcase the smooth theme switching experience. The video demonstrates the instant theme changes, smooth transitions, and responsive design of the theme switcher.
@@ -254,17 +256,21 @@ themeSwitcher.removeTheme();
 
 ## 📊 Version Comparison
 
-| Feature | v1.0.0 | v1.1.0 | v1.2.0 | v1.2.3 |
-|---------|--------|---------|---------|---------|
-| Basic Theme Switching | ✅ | ✅ | ✅ | ✅ |
-| TypeScript Support | ❌ | ✅ | ✅ | ✅ |
-| Multiple Build Formats | ❌ | ✅ | ✅ | ✅ |
-| localStorage Persistence | ❌ | ❌ | ✅ | ✅ |
-| System Preference Detection | ❌ | ❌ | ✅ | ✅ |
-| Touch Gestures | ❌ | ❌ | ✅ | ✅ |
-| **Working Demo** | ❌ | ❌ | ❌ | ✅ |
-| **Toggle Button Fix** | ❌ | ❌ | ❌ | ✅ |
-| **Self-Contained Demo** | ❌ | ❌ | ❌ | ✅ |
+| Feature | v1.0.0 | v1.1.0 | v1.2.0 | v1.2.3 | v1.2.6 | v1.2.8 |
+|---------|--------|---------|---------|---------|---------|---------|
+| Basic Theme Switching | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| TypeScript Support | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Multiple Build Formats | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| localStorage Persistence | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| System Preference Detection | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Touch Gestures | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| **Working Demo** | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ |
+| **Toggle Button Fix** | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ |
+| **Self-Contained Demo** | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ |
+| **Enhanced Demo Page** | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **GitHub Pages Deployment** | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| **Video Demo** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **Simple Working Demo** | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 
 ## 🧪 Testing
 
@@ -299,23 +305,26 @@ npm install website-theme-switcher
 - [Latest Release](https://github.com/mnahsanofficial/website-theme-switcher/releases)
 - [Source Code](https://github.com/mnahsanofficial/website-theme-switcher)
 
-## 🌟 What's New in v1.2.3
+## 🌟 What's New in v1.2.8
 
-- **✅ Working Theme Switcher Demo** - `simple-working-demo.html` with self-contained, fully functional theme switcher
-- **✅ Improved Toggle Functionality** - Enhanced `data-toggle-theme` attribute detection and theme switching
-- **✅ Self-Contained Demo** - Created demo that works without external dependencies
-- **✅ Fixed Toggle Button** - Resolved issue where toggle buttons were not switching themes
-- **✅ Enhanced Package** - Better toggle button detection and theme switching logic
+- **✅ Video Demo Restored** - Auto-playing video that loops continuously to showcase theme switching
+- **✅ Simple Working Demo** - Reverted the working demo with beautiful UI and smooth animations
+- **✅ Enhanced Styles** - Comprehensive CSS with responsive design and theme-specific styling
+- **✅ Updated Version Table** - Complete feature comparison from v1.0.0 to v1.2.8
+- **✅ Cleaner Package** - Removed unused demo files while keeping essential working demos
+- **✅ Video Controls** - Added video controls for better user experience
 
 ## 🚀 Demo
 
-Experience the theme switcher in action with our auto-playing demo video above! The video showcases:
+Experience the theme switcher in action with our auto-playing demo video above and interactive demo below! The demos showcase:
 
 - **🎬 Instant Theme Switching**: See how themes change instantly between light and dark modes
 - **✨ Smooth Transitions**: Watch the beautiful animations and transitions
 - **💾 localStorage Persistence**: Observe how theme preferences are saved
 - **📱 Responsive Design**: See the theme switcher working across different screen sizes
 - **🔄 Auto-Loop**: The video automatically plays and loops to continuously demonstrate features
+
+**🎯 [Simple Working Demo](demo/simple-working-demo.html)** - A minimal, focused demo that demonstrates the core theme switching functionality with a beautiful UI and smooth animations.
 
 > **🎬 Video Demo:** The demo video above automatically plays and loops to showcase the theme switcher in action. Watch how smoothly themes transition and how the interface adapts to different themes.
 
